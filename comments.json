@@ -17,110 +17,48 @@
       "time": "2025-09-12T19:15:00Z",
       "upvotes": 14,
       "rating": 5
-    }
-  ],
-  "Harry Potter and the Chamber of Secrets": [
+    },
     {
-      "text": "Darker than the first one, I loved the mystery element.",
-      "time": "2025-09-11T21:00:00Z",
-      "upvotes": 18,
+      "text": "Re-read this 10 times, never gets old!",
+      "time": "2025-09-10T09:00:00Z",
+      "upvotes": 33,
       "rating": 5
     },
     {
-      "text": "The ending was so satisfying!",
-      "time": "2025-09-10T16:25:00Z",
-      "upvotes": 12,
-      "rating": 4
-    }
-  ],
-  "A Game of Thrones": [
-    {
-      "text": "Epic in scope, brutal in detail. Not for the faint-hearted.",
-      "time": "2025-09-09T20:40:00Z",
-      "upvotes": 30,
-      "rating": 5
-    },
-    {
-      "text": "Too many characters to follow at first, but worth it.",
-      "time": "2025-09-08T14:05:00Z",
-      "upvotes": 7,
+      "text": "Could have used more world-building early on.",
+      "time": "2025-09-09T16:20:00Z",
+      "upvotes": 4,
       "rating": 3
     },
     {
-      "text": "The politics and betrayals are unmatched.",
-      "time": "2025-09-07T10:10:00Z",
-      "upvotes": 22,
-      "rating": 5
-    }
-  ],
-  "Pride and Prejudice": [
-    {
-      "text": "Elizabeth Bennet is one of my favorite heroines ever.",
-      "time": "2025-09-06T09:45:00Z",
-      "upvotes": 15,
-      "rating": 5
-    },
-    {
-      "text": "The language is tough at times but the story is timeless.",
-      "time": "2025-09-05T12:00:00Z",
-      "upvotes": 6,
+      "text": "The illustrations in my edition made it even better.",
+      "time": "2025-09-08T20:00:00Z",
+      "upvotes": 11,
       "rating": 4
-    }
-  ],
-  "Foundation": [
+    },
     {
-      "text": "Mind-blowing concepts. Asimov was ahead of his time.",
-      "time": "2025-09-04T17:20:00Z",
-      "upvotes": 20,
+      "text": "Best fantasy book for children ever written.",
+      "time": "2025-09-07T13:45:00Z",
+      "upvotes": 27,
       "rating": 5
     },
     {
-      "text": "Not much action, but fascinating ideas.",
-      "time": "2025-09-03T11:35:00Z",
+      "text": "Some pacing issues, but the charm outweighs it.",
+      "time": "2025-09-06T17:30:00Z",
       "upvotes": 8,
       "rating": 4
-    }
-  ],
-  "The Murder of Roger Ackroyd": [
+    },
     {
-      "text": "One of Christie’s best twists ever!",
-      "time": "2025-09-02T18:50:00Z",
-      "upvotes": 19,
+      "text": "Made me fall in love with reading.",
+      "time": "2025-09-05T11:15:00Z",
+      "upvotes": 40,
       "rating": 5
     },
     {
-      "text": "Poirot is brilliant as always.",
-      "time": "2025-09-01T13:15:00Z",
-      "upvotes": 10,
-      "rating": 4
-    }
-  ],
-  "1984": [
-    {
-      "text": "Chilling, depressing, and essential.",
-      "time": "2025-08-31T15:40:00Z",
-      "upvotes": 28,
+      "text": "A true classic that defined my childhood.",
+      "time": "2025-09-04T09:10:00Z",
+      "upvotes": 21,
       "rating": 5
-    },
-    {
-      "text": "Scarily relevant even today.",
-      "time": "2025-08-30T09:00:00Z",
-      "upvotes": 16,
-      "rating": 5
-    }
-  ],
-  "To Kill a Mockingbird": [
-    {
-      "text": "Atticus Finch is such a powerful character.",
-      "time": "2025-08-29T12:45:00Z",
-      "upvotes": 22,
-      "rating": 5
-    },
-    {
-      "text": "Important themes but a bit slow in parts.",
-      "time": "2025-08-28T07:30:00Z",
-      "upvotes": 5,
-      "rating": 3
     }
   ]
 }
