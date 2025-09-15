@@ -70,21 +70,24 @@
   <!-- Comments dynamically injected -->
  <!-- Replies Modal inside #comments ✅ -->
 <div id="comments">
-  <!-- Comments dynamically injected here -->
+<!-- inside the <div id="comments"> ... </div> -->
+<!-- Replies Modal (single instance, sits inside comments) -->
+<div id="replyModal" class="reply-modal" aria-hidden="true">
+  <div class="reply-modal-content">
+    <div class="reply-modal-header">
+      <span>Replies</span>
+      <button id="closeReplyModal" aria-label="Close replies">✖</button>
+    </div>
 
-  <div id="replyModal" class="reply-modal">
-    <div class="reply-modal-content">
-      <div class="reply-modal-header">
-        <span>Replies</span>
-        <button id="closeReplyModal" aria-label="Close replies">✖</button>
-      </div>
-      <div id="replyList" class="reply-list"></div>
-      <div class="reply-input-bar">
-        <textarea id="replyInput" placeholder="Write a reply..." rows="2"></textarea>
-        <button id="replySubmit">Reply</button>
-      </div>
+    <div id="replyList" class="reply-list"></div>
+
+    <div class="reply-input-bar">
+      <textarea id="replyInput" placeholder="Write a reply..." rows="2"></textarea>
+      <button id="replySubmit">Reply</button>
     </div>
   </div>
+</div>
+
 </div>
 
 
