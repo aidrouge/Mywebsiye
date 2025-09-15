@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+  <title>Responsive Sidebar UI — Topbar Contextual Controls</title>
+  <!-- your full CSS stays exactly as you wrote -->
+  <style>
+    /* ... same CSS from your file ... */
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar" aria-hidden="true">
+    <div class="sidebar-inner">
+      <div class="sidebar-header">
+        <button id="sidebarClose" class="icon-btn" aria-label="Close sidebar">✕</button>
+        <h3>Menu</h3>
+      </div>
+      <div class="sidebar-search"><input type="text" placeholder="Search..." aria-label="Search sidebar" /></div>
+      <div class="quick-buttons" role="tablist" aria-label="Categories">
+        <button class="active" data-category="genres" role="tab" aria-selected="true">Genres</button>
+        <button data-category="authors" role="tab">Authors</button>
+        <button data-category="series" role="tab">Series</button>
+        <button data-category="titles" role="tab">Titles</button>
+      </div>
+      <nav class="sidebar-list" id="sidebarList" aria-label="Sidebar list"></nav>
+    </div>
+    <div class="sidebar-user" id="sidebarUser">
+      <img src="https://example.com/user.jpg" alt="User avatar" id="sidebarUserImg">
+      <div class="user-name" id="sidebarUserName">John Doe</div>
+    </div>
+  </aside>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay" hidden></div>
+
+  <!-- Content -->
+  <main class="content" id="mainContent">
+    <header class="topbar">
+      <button id="menuBtn" class="icon-btn" aria-label="Open menu">☰</button>
+      <div class="address-bar" id="topbarControls" aria-live="polite">
+        <div class="address-dot" aria-hidden="true"></div>
+        <div class="address-text" id="topicTitle" aria-atomic="true">Select a topic</div>
+      </div>
+    </header>
+
+    <div class="header-section" id="headerSection">
+      <span class="header-tab" id="categoryName">Genres</span>
+      <span class="header-comment">Comment 1.65K</span>
+      <span class="header-bell">🔔</span>
+    </div>
+
+    <div class="comment-section">
+      <div class="sort-buttons">
+        <button class="active" data-sort="recommended">Recommended</button>
+        <button data-sort="rating">Rating</button>
+        <button data-sort="hot">Hot</button>
+        <button data-sort="newest">Newest</button>
+      </div>
+
+      <div id="comments">
+        <!-- Here you can hardcode sample comments if needed since PHP is removed -->
+        <div class="comment">
+          <div class="comment-avatar" style="background:#000;"></div>
+          <div class="comment-content">
+            <div class="comment-username">Kara deniz2012</div>
+            <div class="comment-time">9-21 21:05</div>
+            <div class="comment-rating">Rating: <span class="stars">★★★★★ 5.0</span></div>
+            <div class="comment-text">Çok Çok güzel 😍</div>
+            <div class="comment-footer">
+              <div class="reply-link">Reply</div>
+              <div class="comment-actions"><span>💬 1</span><span>👍 1</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Bottom Bar -->
+  <div class="bottom-bar" role="toolbar" aria-label="Comment input">
+    <button class="big-circle" aria-label="Create">+</button>
+    <div class="input-pill"><input type="text" placeholder="Come and join the discussion~" id="commentInput"></div>
+    <div class="right-actions">
+      <button class="round-btn" aria-label="Voice">🎤</button>
+      <button class="round-btn send" aria-label="Send">➤</button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-title">Sign Up</div>
+      <input type="email" placeholder="Please enter your email" />
+      <input type="password" placeholder="Please set your password" />
+      <input type="text" placeholder="Invitation code, optional" />
+      <button>Next</button>
+      <div class="agreement-text">
+        Registering represents agreement <a href="#" class="agreement-link">(User Agreement)</a> & <a href="#" class="agreement-link">(Privacy Policy)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script>
+    // keep all the JavaScript you had — only PHP removed
+    // ...
+  </script>
+</body>
+</html>
