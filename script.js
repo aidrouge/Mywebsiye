@@ -1,30 +1,20 @@
-    // -------- Data (sample JSON) --------
-    const data = {
-      genres: ['Fiction','Non-Fiction','Mystery','Sci-Fi','Romance','Thriller','Fantasy'],
-      authors: {
-        "Author A": { titles: ["Title A1","Title A2"], series: ["Series A1"] },
-        "Author B": { titles: ["Title B1"], series: ["Series B1","Series B2"] },
-        "Author C": { titles: ["Title C1","Title C2","Title C3"], series: [] },
-        "Author D": { titles: ["Title D1"], series: ["Series D1"] }
-      },
-      series: {
-        "Series A1": ["Title A1","Title A2"],
-        "Series B1": ["Title B1"],
-        "Series B2": ["Title B2-1","Title B2-2"],
-        "Series D1": ["Title D1"]
-      },
-      titles: {
-        "Title A1": { author: "Author A", series: "Series A1" },
-        "Title A2": { author: "Author A", series: "Series A1" },
-        "Title B1": { author: "Author B", series: "Series B1" },
-        "Title B2-1": { author: "Author B", series: "Series B2" },
-        "Title B2-2": { author: "Author B", series: "Series B2" },
-        "Title C1": { author: "Author C", series: null },
-        "Title C2": { author: "Author C", series: null },
-        "Title C3": { author: "Author C", series: null },
-        "Title D1": { author: "Author D", series: "Series D1" }
-      }
-    };
+// fetch the real JSON data
+fetch('data.json')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(jsonData => {
+    data = jsonData;  // use this fetched data
+    // initialize your UI using this data
+    switchCategory('genres'); // or whatever your init function is
+    // etc, call whichever functions you use to render your UI
+  })
+  .catch(error => {
+    console.error('Failed to load data.json:', error);
+  });
 
     // -------- State --------
     let activeCategory = 'genres';
