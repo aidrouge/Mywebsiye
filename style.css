@@ -194,22 +194,29 @@ body{
   margin: 6px 0;
 }
 .sidebar-user {margin-top: auto;position: relative;z-index: 10;}
+/* reply modal inside comments (hidden by default) */
 .reply-modal {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: #1c1c1c; /* dark background like comments area */
-  border: 1px solid #333;
+  display: none;               /* hide by default */
+  z-index: 60;                 /* above comment-topbar (50) */
+  background: var(--card);     /* dark background to match area */
+  border: 1px solid rgba(255,255,255,0.03);
   border-radius: 8px;
-  z-index: 20;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 10px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
+/* open state */
+.reply-modal.open {
+  display: flex;
+  flex-direction: column;
+}
+
+/* inner content takes full height */
 .reply-modal-content {
   width: 100%;
   height: 100%;
@@ -217,72 +224,55 @@ body{
   flex-direction: column;
 }
 
+/* header */
 .reply-modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 10px;
-  border-bottom: 1px solid #333;
-  font-weight: bold;
+  padding: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  background: linear-gradient(180deg, rgba(0,0,0,0.02), transparent);
+  font-weight: 600;
 }
 
+/* replies list area */
 .reply-list {
   flex: 1;
   overflow-y: auto;
-  padding: 10px;
+  padding: 12px;
+  gap: 8px;
 }
 
+/* each reply */
+.reply {
+  padding: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+
+/* input bar */
 .reply-input-bar {
+  padding: 10px;
   display: flex;
   gap: 10px;
-  padding: 10px;
-  border-top: 1px solid #333;
+  border-top: 1px solid rgba(255,255,255,0.03);
+  background: linear-gradient(0deg, rgba(0,0,0,0.02), transparent);
 }
-
 .reply-input-bar textarea {
   flex: 1;
-  resize: none;
-  border-radius: 6px;
-  padding: 6px;
-  background: #222;
+  min-height: 44px;
+  resize: vertical;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.04);
   color: #fff;
-  border: 1px solid #444;
+  padding: 8px;
+  border-radius: 6px;
 }
-
 .reply-input-bar button {
-  padding: 6px 12px;
-  border: none;
+  padding: 8px 12px;
   border-radius: 6px;
-  background: #444;
-  color: #fff;
+  border: none;
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
   cursor: pointer;
-}
-/* Reply Modal */
-#replyModal .modal-content {
-  max-width: 500px;
-  width: 90%;
-}
-
-.reply-list {
-  max-height: 200px;
-  overflow-y: auto;
-  margin-bottom: 10px;
-  padding: 5px;
-  border: 1px solid #444;
-  border-radius: 5px;
-}
-
-.reply {
-  padding: 5px;
-  border-bottom: 1px solid #333;
-}
-
-.reply:last-child {
-  border-bottom: none;
-}
-
-#replyInput {
-  width: 100%;
-  height: 60px;
-  margin-bottom: 10px;
 }
