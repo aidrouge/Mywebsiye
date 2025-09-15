@@ -68,24 +68,25 @@
   </div>
 
   <!-- Comments dynamically injected -->
-  <div id="comments">
+ <div id="comments">
   <!-- Comments dynamically injected here -->
 
   <!-- Replies Modal -->
-  <div id="replyModal" class="reply-modal" hidden>
+  <div id="replyModal" class="reply-modal">
     <div class="reply-modal-content">
       <div class="reply-modal-header">
         <span>Replies</span>
-        <button id="closeReplyModal">✖</button>
+        <button id="closeReplyModal" aria-label="Close replies">✖</button>
       </div>
       <div id="replyList" class="reply-list"></div>
       <div class="reply-input-bar">
-        <textarea id="replyInput" placeholder="Write a reply..."></textarea>
+        <textarea id="replyInput" placeholder="Write a reply..." rows="2"></textarea>
         <button id="replySubmit">Reply</button>
       </div>
     </div>
   </div>
 </div>
+
 
 </div>
 
