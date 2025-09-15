@@ -119,106 +119,151 @@ function clearTopbarControls(){
   topbarControls.appendChild(dot);
 }
 
-function renderTopbarControls() {
+function renderTopbarControls(){
   clearTopbarControls();
 
-  function makeSelect(options = [], value = null, className = 'topic-subselect') {
-    const s = document.createElement('select');
-    s.className = className;
+  function makeSelect(options = [], value = null, className='topic-select'){
+    const s = document.createElement('select'); s.className = className;
     options.forEach(opt => {
-      const o = document.createElement('option');
-      o.value = opt;
-      o.text = opt;
+      const o = document.createElement('option'); o.value = opt; o.text = opt;
       s.appendChild(o);
     });
-    if (value !== null && options.includes(value)) s.value = value;
+    if(value !== null && options.includes(value)) s.value = value;
     return s;
   }
 
-  // ---- GENRES ----
-  if (activeCategory === 'genres') {
-    selectedItem = selectedItem || data.genres[0];
-    topicTitle.textContent = selectedItem;
-  }
+ if (activeCategory === 'genres') {
+  // Only show topicTitle = selectedItem (genre)
+  selectedItem = selectedItem || data.genres[0];
+  topicTitle.textContent = selectedItem;
+  // Clear other controls
+  // (we already cleared topbarControls earlier in clearTopbarControls)
+}
 
-  // ---- AUTHORS ----
-  else if (activeCategory === 'authors') {
-    selectedAuthor = selectedAuthor || Object.keys(data.authors)[0];
+
+  else if(activeCategory === 'authors'){
+    const authors = Object.keys(data.authors);
+    const selAuthor = makeSelect(authors, selectedAuthor || authors[0], 'topic-select');
+    selAuthor.addEventListener('change', () => {
+      selectedAuthor = selAuthor.value;
+      selectedItem = selectedAuthor;
+      selectedSeries = null;
+      selectedTitle = null;
+      renderTopbarControls();
+      updateHeaderText();
+      highlightSidebarActive();
+    });
+    topbarControls.appendChild(selAuthor);
+
+    selectedAuthor = selectedAuthor || authors[0];
     selectedItem = selectedAuthor;
-    topicTitle.textContent = selectedAuthor;
-
-    // Dropdown of titles by author
     const titles = data.authors[selectedAuthor].titles || [];
-    if (titles.length) {
-      const selTitles = makeSelect(titles, selectedTitle || null);
+    if(titles.length){
+      const selTitles = makeSelect(titles, selectedTitle || null, 'topic-subselect');
       selTitles.addEventListener('change', () => {
         selectedTitle = selTitles.value;
+        selectedItem = selectedTitle;
         switchCategory('titles', selectedTitle);
       });
       topbarControls.appendChild(selTitles);
     }
-
-    // Dropdown of series by author
     const sers = data.authors[selectedAuthor].series || [];
-    if (sers.length) {
-      const selSeries = makeSelect(sers, selectedSeries || null);
+    if(sers.length){
+      const selSeries = makeSelect(sers, selectedSeries || null, 'topic-subselect');
       selSeries.addEventListener('change', () => {
         selectedSeries = selSeries.value;
+        selectedItem = selectedSeries;
         switchCategory('series', selectedSeries);
       });
       topbarControls.appendChild(selSeries);
     }
+    updateHeaderText();
   }
 
-  // ---- SERIES ----
-  else if (activeCategory === 'series') {
-    selectedSeries = selectedSeries || Object.keys(data.series)[0];
+  else if(activeCategory === 'series'){
+    const seriesList = Object.keys(data.series);
+    const selSeries = makeSelect(seriesList, selectedSeries || seriesList[0], 'topic-select');
+    selSeries.addEventListener('change', () => {
+      selectedSeries = selSeries.value;
+      selectedItem = selectedSeries;
+      selectedTitle = null;
+      renderTopbarControls();
+      updateHeaderText();
+      highlightSidebarActive();
+    });
+    topbarControls.appendChild(selSeries);
+
+    selectedSeries = selectedSeries || seriesList[0];
     selectedItem = selectedSeries;
-    topicTitle.textContent = selectedSeries;
 
-    // Author of this series (if mapping exists)
-    if (data.seriesAuthor && data.seriesAuthor[selectedSeries]) {
-      const spanAuthor = document.createElement('span');
-      spanAuthor.textContent = data.seriesAuthor[selectedSeries];
-      topbarControls.appendChild(spanAuthor);
-    }
-
-    // Dropdown of titles in this series
-    const titlesInSeries = data.series[selectedSeries] || [];
-    if (titlesInSeries.length) {
-      const selTitles = makeSelect(titlesInSeries, selectedTitle || null);
+    const titles = data.series[selectedSeries] || [];
+    if(titles.length){
+      const selTitles = makeSelect(titles, selectedTitle || null, 'topic-subselect');
       selTitles.addEventListener('change', () => {
         selectedTitle = selTitles.value;
+        selectedItem = selectedTitle;
         switchCategory('titles', selectedTitle);
       });
       topbarControls.appendChild(selTitles);
     }
+    updateHeaderText();
   }
 
-  // ---- TITLES ----
-  else if (activeCategory === 'titles') {
-    selectedTitle = selectedTitle || Object.keys(data.titles)[0];
+  else if(activeCategory === 'titles'){
+    const titlesAll = Object.keys(data.titles);
+    const selTitle = makeSelect(titlesAll, selectedTitle || titlesAll[0], 'topic-select');
+    selTitle.addEventListener('change', () => {
+      selectedTitle = selTitle.value;
+      selectedItem = selectedTitle;
+      renderTopbarControls();
+      updateHeaderText();
+      highlightSidebarActive();
+    });
+    topbarControls.appendChild(selTitle);
+
+    selectedTitle = selectedTitle || titlesAll[0];
     selectedItem = selectedTitle;
-    topicTitle.textContent = selectedTitle;
 
-    const info = data.titles[selectedTitle] || {};
-
-    // Author of title
-    if (info.author) {
-      const spanAuthor = document.createElement('span');
-      spanAuthor.textContent = info.author;
-      topbarControls.appendChild(spanAuthor);
+    const info = data.titles[selectedTitle];
+    if(info && info.author){
+      const btnAuthor = document.createElement('button');
+      btnAuthor.className = 'topic-action';
+      btnAuthor.textContent = info.author;
+      btnAuthor.title = `Go to author: ${info.author}`;
+      btnAuthor.addEventListener('click', () => {
+        switchCategory('authors', info.author);
+        selectedAuthor = info.author;
+        selectedItem = info.author;
+        renderTopbarControls();
+        updateHeaderText();
+        highlightSidebarActive();
+      });
+      topbarControls.appendChild(btnAuthor);
+    }
+    if(info && info.series){
+      const btnSeries = document.createElement('button');
+      btnSeries.className = 'topic-action';
+      btnSeries.textContent = info.series;
+      btnSeries.title = `Go to series: ${info.series}`;
+      btnSeries.addEventListener('click', () => {
+        switchCategory('series', info.series);
+        selectedSeries = info.series;
+        selectedItem = info.series;
+        renderTopbarControls();
+        updateHeaderText();
+        highlightSidebarActive();
+      });
+      topbarControls.appendChild(btnSeries);
     }
 
-    // Series of title
-    if (info.series) {
-      const spanSeries = document.createElement('span');
-      spanSeries.textContent = info.series;
-      topbarControls.appendChild(spanSeries);
-    }
+    updateHeaderText();
+    renderComments(selectedTitle); // <-- show comments when viewing a title
+  }
+
+  if(!topbarControls.contains(topicTitle)){
+    topbarControls.appendChild(topicTitle);
   }
 }
-
 
 // -------- Category switching --------
 function switchCategory(cat, preselect = null){
