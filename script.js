@@ -221,10 +221,18 @@ function renderTopbarControls() {
     renderComments(selectedTitle);
   }
 
-  // Make sure topicTitle is always visible
-  if (!topbarControls.contains(topicTitle)) {
-    topbarControls.appendChild(topicTitle);
+  // Make sure topicTitle is always right after the dot
+if (!topbarControls.contains(topicTitle)) {
+  // insert after the first child (the dot)
+  topbarControls.insertBefore(topicTitle, topbarControls.children[1] || null);
+} else {
+  // if it already exists but is not in the right spot, move it
+  if (topbarControls.children[1] !== topicTitle) {
+    topbarControls.removeChild(topicTitle);
+    topbarControls.insertBefore(topicTitle, topbarControls.children[1] || null);
   }
+}
+
 }
 
 
