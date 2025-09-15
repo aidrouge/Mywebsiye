@@ -68,7 +68,25 @@
   </div>
 
   <!-- Comments dynamically injected -->
-  <div id="comments"></div>
+  <div id="comments">
+  <!-- Comments dynamically injected here -->
+
+  <!-- Replies Modal -->
+  <div id="replyModal" class="reply-modal" hidden>
+    <div class="reply-modal-content">
+      <div class="reply-modal-header">
+        <span>Replies</span>
+        <button id="closeReplyModal">✖</button>
+      </div>
+      <div id="replyList" class="reply-list"></div>
+      <div class="reply-input-bar">
+        <textarea id="replyInput" placeholder="Write a reply..."></textarea>
+        <button id="replySubmit">Reply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 
   </main>
