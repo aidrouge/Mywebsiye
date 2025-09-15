@@ -1,84 +1,126 @@
 {
   "Harry Potter and the Sorcerer's Stone": [
     {
-      "username": "MagicFan99",
-      "avatar": "https://example.com/avatars/magic1.jpg",
-      "time": "2025-09-10T14:32:00",
-      "rating": 4.8,
-      "text": "This book was my childhood! ⚡ Hogwarts forever.",
-      "replies": 2,
-      "likes": 15
+      "text": "Absolutely magical! I felt like I was at Hogwarts.",
+      "time": "2025-09-14T12:30:00Z",
+      "upvotes": 25,
+      "rating": 5
     },
     {
-      "username": "HermioneRules",
-      "avatar": "https://example.com/avatars/hermione.jpg",
-      "time": "2025-09-11T09:20:00",
-      "rating": 5.0,
-      "text": "Re-reading it for the 5th time, never gets old.",
-      "replies": 0,
-      "likes": 8
+      "text": "A bit slow at the start but it hooked me later.",
+      "time": "2025-09-13T08:45:00Z",
+      "upvotes": 9,
+      "rating": 4
+    },
+    {
+      "text": "Great for kids and adults alike.",
+      "time": "2025-09-12T19:15:00Z",
+      "upvotes": 14,
+      "rating": 5
+    }
+  ],
+  "Harry Potter and the Chamber of Secrets": [
+    {
+      "text": "Darker than the first one, I loved the mystery element.",
+      "time": "2025-09-11T21:00:00Z",
+      "upvotes": 18,
+      "rating": 5
+    },
+    {
+      "text": "The ending was so satisfying!",
+      "time": "2025-09-10T16:25:00Z",
+      "upvotes": 12,
+      "rating": 4
     }
   ],
   "A Game of Thrones": [
     {
-      "username": "WinterIsComing",
-      "avatar": "https://example.com/avatars/got1.jpg",
-      "time": "2025-09-12T19:45:00",
-      "rating": 4.7,
-      "text": "The politics and betrayals are unmatched! 🐺❄️",
-      "replies": 5,
-      "likes": 20
+      "text": "Epic in scope, brutal in detail. Not for the faint-hearted.",
+      "time": "2025-09-09T20:40:00Z",
+      "upvotes": 30,
+      "rating": 5
     },
     {
-      "username": "DragonQueen",
-      "avatar": "https://example.com/avatars/dany.jpg",
-      "time": "2025-09-13T11:05:00",
-      "rating": 5.0,
-      "text": "Daenerys is the best character hands down 🔥🐉",
-      "replies": 3,
-      "likes": 12
-    }
-  ],
-  "Foundation": [
-    {
-      "username": "SciFiNerd",
-      "avatar": "https://example.com/avatars/scifi.jpg",
-      "time": "2025-09-14T18:00:00",
-      "rating": 4.5,
-      "text": "The scope of this universe is insane 🤯",
-      "replies": 1,
-      "likes": 5
+      "text": "Too many characters to follow at first, but worth it.",
+      "time": "2025-09-08T14:05:00Z",
+      "upvotes": 7,
+      "rating": 3
     },
     {
-      "username": "IsaacForever",
-      "avatar": "https://example.com/avatars/asimov.jpg",
-      "time": "2025-09-15T07:30:00",
-      "rating": 5.0,
-      "text": "Asimov was way ahead of his time.",
-      "replies": 0,
-      "likes": 9
+      "text": "The politics and betrayals are unmatched.",
+      "time": "2025-09-07T10:10:00Z",
+      "upvotes": 22,
+      "rating": 5
     }
   ],
   "Pride and Prejudice": [
     {
-      "username": "RomanceReader",
-      "avatar": "https://example.com/avatars/romance.jpg",
-      "time": "2025-09-11T20:11:00",
-      "rating": 4.9,
-      "text": "Mr. Darcy ❤️ timeless classic.",
-      "replies": 4,
-      "likes": 30
+      "text": "Elizabeth Bennet is one of my favorite heroines ever.",
+      "time": "2025-09-06T09:45:00Z",
+      "upvotes": 15,
+      "rating": 5
+    },
+    {
+      "text": "The language is tough at times but the story is timeless.",
+      "time": "2025-09-05T12:00:00Z",
+      "upvotes": 6,
+      "rating": 4
+    }
+  ],
+  "Foundation": [
+    {
+      "text": "Mind-blowing concepts. Asimov was ahead of his time.",
+      "time": "2025-09-04T17:20:00Z",
+      "upvotes": 20,
+      "rating": 5
+    },
+    {
+      "text": "Not much action, but fascinating ideas.",
+      "time": "2025-09-03T11:35:00Z",
+      "upvotes": 8,
+      "rating": 4
+    }
+  ],
+  "The Murder of Roger Ackroyd": [
+    {
+      "text": "One of Christie’s best twists ever!",
+      "time": "2025-09-02T18:50:00Z",
+      "upvotes": 19,
+      "rating": 5
+    },
+    {
+      "text": "Poirot is brilliant as always.",
+      "time": "2025-09-01T13:15:00Z",
+      "upvotes": 10,
+      "rating": 4
     }
   ],
   "1984": [
     {
-      "username": "BigBrother",
-      "avatar": "https://example.com/avatars/orwell.jpg",
-      "time": "2025-09-09T22:00:00",
-      "rating": 5.0,
-      "text": "Scarily relevant even today 😨📖",
-      "replies": 6,
-      "likes": 40
+      "text": "Chilling, depressing, and essential.",
+      "time": "2025-08-31T15:40:00Z",
+      "upvotes": 28,
+      "rating": 5
+    },
+    {
+      "text": "Scarily relevant even today.",
+      "time": "2025-08-30T09:00:00Z",
+      "upvotes": 16,
+      "rating": 5
+    }
+  ],
+  "To Kill a Mockingbird": [
+    {
+      "text": "Atticus Finch is such a powerful character.",
+      "time": "2025-08-29T12:45:00Z",
+      "upvotes": 22,
+      "rating": 5
+    },
+    {
+      "text": "Important themes but a bit slow in parts.",
+      "time": "2025-08-28T07:30:00Z",
+      "upvotes": 5,
+      "rating": 3
     }
   ]
 }
