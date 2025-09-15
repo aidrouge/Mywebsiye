@@ -10,21 +10,22 @@
   <aside id="sidebar" class="sidebar" aria-hidden="true">
     <div class="sidebar-inner">
       <div class="sidebar-top">
-  <div class="sidebar-header">
-    <button id="sidebarClose" class="icon-btn" aria-label="Close sidebar">✕</button>
-    <h3>Menu</h3>
-  </div>
+        <div class="sidebar-header">
+          <button id="sidebarClose" class="icon-btn" aria-label="Close sidebar">✕</button>
+          <h3>Menu</h3>
+        </div>
 
-  <div class="sidebar-search"><input type="text" placeholder="Search..." aria-label="Search sidebar" /></div>
+        <div class="sidebar-search">
+          <input type="text" placeholder="Search..." aria-label="Search sidebar" />
+        </div>
 
-  <div class="quick-buttons" role="tablist" aria-label="Categories">
-    <button class="active" data-category="genres" role="tab" aria-selected="true">Genres</button>
-    <button data-category="authors" role="tab">Authors</button>
-    <button data-category="series" role="tab">Series</button>
-    <button data-category="titles" role="tab">Titles</button>
-  </div>
-</div>
-
+        <div class="quick-buttons" role="tablist" aria-label="Categories">
+          <button class="active" data-category="genres" role="tab" aria-selected="true">Genres</button>
+          <button data-category="authors" role="tab">Authors</button>
+          <button data-category="series" role="tab">Series</button>
+          <button data-category="titles" role="tab">Titles</button>
+        </div>
+      </div>
 
       <nav class="sidebar-list" id="sidebarList" aria-label="Sidebar list">
         <!-- topics (flat) injected here -->
@@ -42,8 +43,6 @@
   <main class="content" id="mainContent">
     <header class="topbar">
       <button id="menuBtn" class="icon-btn" aria-label="Open menu">☰</button>
-
-      
     </header>
 
     <div class="header-section" id="headerSection">
@@ -54,22 +53,68 @@
 
     <div class="comment-section">
       <div class="comment-topbar">
-  <div class="address-bar" id="topbarControls" aria-live="polite">
-    <div class="address-dot" aria-hidden="true"></div>
-    <!-- contextual controls injected here -->
-    <div class="address-text" id="topicTitle" aria-atomic="true">Select a topic</div>
-  </div>
-</div>
+        <div class="address-bar" id="topbarControls" aria-live="polite">
+          <div class="address-dot" aria-hidden="true"></div>
+          <!-- contextual controls injected here -->
+          <div class="address-text" id="topicTitle" aria-atomic="true">Select a topic</div>
+        </div>
 
-      <div class="sort-buttons">
-        <button class="active" data-sort="recommended">Recommended</button>
-        <button data-sort="rating">Rating</button>
-        <button data-sort="hot">Hot</button>
-        <button data-sort="newest">Newest</button>
+        <div class="sort-buttons">
+          <button class="active" data-sort="recommended">Recommended</button>
+          <button data-sort="rating">Rating</button>
+          <button data-sort="hot">Hot</button>
+          <button data-sort="newest">Newest</button>
+        </div>
       </div>
 
       <div id="comments">
-<div class="comment" data-time="2025-09-15T21:05:00"><div class="comment-avatar" style="background: #000;"></div><div class="comment-content"><div class="comment-username">Kara deniz2012</div><div class="comment-time">9-21 21:05</div><div class="comment-rating">Rating: <span class="stars">★★★★★ 5.0</span></div><div class="comment-text">Çok Çok güzel 😍</div><div class="comment-footer"><div class="reply-link">Reply</div><div class="comment-actions"><span>💬 1</span><span>👍 1</span></div></div></div></div><div class="comment" data-time="2025-09-15T16:31:00"><div class="comment-avatar" style="background: #2a2a2a;"><img src="https://example.com/avatar-a.jpg" alt=""></div><div class="comment-content"><div class="comment-username">A♥</div><div class="comment-time">9-8 16:31</div><div class="comment-text"><span style="color:#a020f0;background:#2a2a2f;padding:2px 4px;border-radius:4px;margin-right:6px;">Ⓡ Reborn</span>رائع جدًا! SSSS! 😍 Reborn 13 يا مرحبا !!؟</div><div class="comment-footer"><div class="reply-link">Reply</div><div class="comment-actions"><span>💬 6</span><span>👍 2</span></div></div></div></div><div class="comment" data-time="2025-09-15T15:36:00"><div class="comment-avatar" style="background: #a020f0;"></div><div class="comment-content"><div class="comment-username">Roselle 🌷</div><div class="comment-time">9-8 15:36</div><div class="comment-text"><span style="color:#00ff00;background:#2a2a2f;padding:2px 4px;border-radius:4px;margin-right:6px;">Ⓡ Reborn</span>Reborn حصل على الترقية 😅</div><div class="comment-footer"><div class="reply-link">Reply</div><div class="comment-actions"><span>💬 0</span><span>👍 0</span></div></div></div></div>
+        <div class="comment" data-time="2025-09-15T21:05:00">
+          <div class="comment-avatar" style="background: #000;"></div>
+          <div class="comment-content">
+            <div class="comment-username">Kara deniz2012</div>
+            <div class="comment-time">9-21 21:05</div>
+            <div class="comment-rating">Rating: <span class="stars">★★★★★ 5.0</span></div>
+            <div class="comment-text">Çok Çok güzel 😍</div>
+            <div class="comment-footer">
+              <div class="reply-link">Reply</div>
+              <div class="comment-actions"><span>💬 1</span><span>👍 1</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="comment" data-time="2025-09-15T16:31:00">
+          <div class="comment-avatar" style="background: #2a2a2a;">
+            <img src="https://example.com/avatar-a.jpg" alt="">
+          </div>
+          <div class="comment-content">
+            <div class="comment-username">A♥</div>
+            <div class="comment-time">9-8 16:31</div>
+            <div class="comment-text">
+              <span style="color:#a020f0;background:#2a2a2f;padding:2px 4px;border-radius:4px;margin-right:6px;">Ⓡ Reborn</span>
+              رائع جدًا! SSSS! 😍 Reborn 13 يا مرحبا !!؟
+            </div>
+            <div class="comment-footer">
+              <div class="reply-link">Reply</div>
+              <div class="comment-actions"><span>💬 6</span><span>👍 2</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="comment" data-time="2025-09-15T15:36:00">
+          <div class="comment-avatar" style="background: #a020f0;"></div>
+          <div class="comment-content">
+            <div class="comment-username">Roselle 🌷</div>
+            <div class="comment-time">9-8 15:36</div>
+            <div class="comment-text">
+              <span style="color:#00ff00;background:#2a2a2f;padding:2px 4px;border-radius:4px;margin-right:6px;">Ⓡ Reborn</span>
+              Reborn حصل على الترقية 😅
+            </div>
+            <div class="comment-footer">
+              <div class="reply-link">Reply</div>
+              <div class="comment-actions"><span>💬 0</span><span>👍 0</span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
