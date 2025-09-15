@@ -119,107 +119,103 @@ function clearTopbarControls(){
   topbarControls.appendChild(dot);
 }
 
-function renderTopbarControls(){
+function renderTopbarControls() {
   clearTopbarControls();
 
-  function makeSelect(options = [], value = null, className='topic-select'){
-    const s = document.createElement('select'); s.className = className;
+  function makeSelect(options = [], value = null, className = 'topic-subselect') {
+    const s = document.createElement('select');
+    s.className = className;
     options.forEach(opt => {
-      const o = document.createElement('option'); o.value = opt; o.text = opt;
+      const o = document.createElement('option');
+      o.value = opt;
+      o.text = opt;
       s.appendChild(o);
     });
-    if(value !== null && options.includes(value)) s.value = value;
+    if (value !== null && options.includes(value)) s.value = value;
     return s;
   }
 
- if (activeCategory === 'genres') {
-  // Only show topicTitle = selectedItem (genre)
-  selectedItem = selectedItem || data.genres[0];
-  topicTitle.textContent = selectedItem;
-  // Clear other controls
-  // (we already cleared topbarControls earlier in clearTopbarControls)
-}
+  // ---- GENRES ----
+  if (activeCategory === 'genres') {
+    selectedItem = selectedItem || data.genres[0];
+    topicTitle.textContent = selectedItem;
+  }
 
-
+  // ---- AUTHORS ----
   else if (activeCategory === 'authors') {
-  // Author name
-  selectedAuthor = selectedAuthor || Object.keys(data.authors)[0];
-  selectedItem = selectedAuthor;
-  topicTitle.textContent = selectedAuthor;
+    selectedAuthor = selectedAuthor || Object.keys(data.authors)[0];
+    selectedItem = selectedAuthor;
+    topicTitle.textContent = selectedAuthor;
 
-  // Dropdown of titles by author
-  const titles = data.authors[selectedAuthor].titles || [];
-  if (titles.length) {
-    const selTitles = makeSelect(titles, selectedTitle || null, 'topic-subselect');
-    selTitles.addEventListener('change', () => {
-      selectedTitle = selTitles.value;
-      // switch to titles category if needed
-      switchCategory('titles', selectedTitle);
-    });
-    topbarControls.appendChild(selTitles);
+    // Dropdown of titles by author
+    const titles = data.authors[selectedAuthor].titles || [];
+    if (titles.length) {
+      const selTitles = makeSelect(titles, selectedTitle || null);
+      selTitles.addEventListener('change', () => {
+        selectedTitle = selTitles.value;
+        switchCategory('titles', selectedTitle);
+      });
+      topbarControls.appendChild(selTitles);
+    }
+
+    // Dropdown of series by author
+    const sers = data.authors[selectedAuthor].series || [];
+    if (sers.length) {
+      const selSeries = makeSelect(sers, selectedSeries || null);
+      selSeries.addEventListener('change', () => {
+        selectedSeries = selSeries.value;
+        switchCategory('series', selectedSeries);
+      });
+      topbarControls.appendChild(selSeries);
+    }
   }
 
-  // Dropdown of series by author
-  const sers = data.authors[selectedAuthor].series || [];
-  if (sers.length) {
-    const selSeries = makeSelect(sers, selectedSeries || null, 'topic-subselect');
-    selSeries.addEventListener('change', () => {
-      selectedSeries = selSeries.value;
-      switchCategory('series', selectedSeries);
-    });
-    topbarControls.appendChild(selSeries);
-  }
-}
-
+  // ---- SERIES ----
   else if (activeCategory === 'series') {
-  // Series name
-  selectedSeries = selectedSeries || Object.keys(data.series)[0];
-  selectedItem = selectedSeries;
-  topicTitle.textContent = selectedSeries;
+    selectedSeries = selectedSeries || Object.keys(data.series)[0];
+    selectedItem = selectedSeries;
+    topicTitle.textContent = selectedSeries;
 
-  // Show author of series (if you have reverse mapping)
-  // Assuming you have data.seriesAuthor[seriesName] or similar
-  const infoSeries = data.titles; 
-  // You need to get the author of this selectedSeries
-  // Suppose you have data.seriesAuthor[selectedSeries]
-  if (data.seriesAuthor && data.seriesAuthor[selectedSeries]) {
-    const spanAuthor = document.createElement('span');
-    spanAuthor.textContent = data.seriesAuthor[selectedSeries];
-    topbarControls.appendChild(spanAuthor);
+    // Author of this series (if mapping exists)
+    if (data.seriesAuthor && data.seriesAuthor[selectedSeries]) {
+      const spanAuthor = document.createElement('span');
+      spanAuthor.textContent = data.seriesAuthor[selectedSeries];
+      topbarControls.appendChild(spanAuthor);
+    }
+
+    // Dropdown of titles in this series
+    const titlesInSeries = data.series[selectedSeries] || [];
+    if (titlesInSeries.length) {
+      const selTitles = makeSelect(titlesInSeries, selectedTitle || null);
+      selTitles.addEventListener('change', () => {
+        selectedTitle = selTitles.value;
+        switchCategory('titles', selectedTitle);
+      });
+      topbarControls.appendChild(selTitles);
+    }
   }
 
-  // Dropdown of titles in this series
-  const titlesInSeries = data.series[selectedSeries] || [];
-  if (titlesInSeries.length) {
-    const selTitles = makeSelect(titlesInSeries, selectedTitle || null, 'topic-subselect');
-    selTitles.addEventListener('change', () => {
-      selectedTitle = selTitles.value;
-      switchCategory('titles', selectedTitle);
-    });
-    topbarControls.appendChild(selTitles);
-  }
-}
+  // ---- TITLES ----
+  else if (activeCategory === 'titles') {
+    selectedTitle = selectedTitle || Object.keys(data.titles)[0];
+    selectedItem = selectedTitle;
+    topicTitle.textContent = selectedTitle;
 
-else if (activeCategory === 'titles') {
-  // Title name
-  selectedTitle = selectedTitle || Object.keys(data.titles)[0];
-  selectedItem = selectedTitle;
-  topicTitle.textContent = selectedTitle;
+    const info = data.titles[selectedTitle] || {};
 
-  const info = data.titles[selectedTitle] || {};
+    // Author of title
+    if (info.author) {
+      const spanAuthor = document.createElement('span');
+      spanAuthor.textContent = info.author;
+      topbarControls.appendChild(spanAuthor);
+    }
 
-  // Show author of title
-  if (info.author) {
-    const spanAuthor = document.createElement('span');
-    spanAuthor.textContent = info.author;
-    topbarControls.appendChild(spanAuthor);
-  }
-
-  // Show series of title
-  if (info.series) {
-    const spanSeries = document.createElement('span');
-    spanSeries.textContent = info.series;
-    topbarControls.appendChild(spanSeries);
+    // Series of title
+    if (info.series) {
+      const spanSeries = document.createElement('span');
+      spanSeries.textContent = info.series;
+      topbarControls.appendChild(spanSeries);
+    }
   }
 }
 
