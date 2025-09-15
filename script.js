@@ -358,3 +358,102 @@ if (initial) {
 
 })
 .catch(err => console.error('Failed to load JSON:', err));
+
+// -------- Replies Modal --------
+const replyModal = document.getElementById('replyModal');
+const replyList = document.getElementById('replyList');
+const replyInput = document.getElementById('replyInput');
+const replySubmit = document.getElementById('replySubmit');
+const closeReplyModal = document.getElementById('closeReplyModal');
+
+let activeComment = null;
+
+// Open reply modal for a comment
+function openReplyModal(commentEl, commentId) {
+  activeComment = commentId;
+
+  // Load replies for this comment
+  const replies = (commentsData[selectedTitle] || [])
+    .find(c => c.time === commentId)?.repliesList || [];
+
+  replyList.innerHTML = '';
+  if (!replies.length) {
+    replyList.innerHTML = '<p class="no-replies">No replies yet.</p>';
+  } else {
+    replies.forEach(r => {
+      const div = document.createElement('div');
+      div.className = 'reply';
+      div.innerHTML = `
+        <div class="reply-username">Anonymous</div>
+        <div class="reply-time">${new Date(r.time).toLocaleString()}</div>
+        <div class="reply-text">${r.text}</div>
+      `;
+      replyList.appendChild(div);
+    });
+  }
+
+  replyModal.style.display = 'flex';
+  replyInput.value = '';
+  replyInput.focus();
+}
+
+// Close reply modal
+closeReplyModal.addEventListener('click', () => {
+  replyModal.style.display = 'none';
+  activeComment = null;
+});
+
+window.addEventListener('click', (e) => {
+  if (e.target === replyModal) {
+    replyModal.style.display = 'none';
+    activeComment = null;
+  }
+});
+
+// Submit reply
+replySubmit.addEventListener('click', () => {
+  if (!activeComment || !replyInput.value.trim()) return;
+
+  // Find the comment in commentsData
+  const comment = (commentsData[selectedTitle] || [])
+    .find(c => c.time === activeComment);
+  if (!comment) return;
+
+  comment.repliesList = comment.repliesList || [];
+  comment.repliesList.push({
+    time: Date.now(),
+    text: replyInput.value.trim()
+  });
+  comment.replies = (comment.replies || 0) + 1;
+
+  replyInput.value = '';
+  replyModal.style.display = 'none';
+
+  // Re-render comments to update 💬 count
+  renderComments(selectedTitle);
+});
+
+// Hook reply links + 💬 spans after comments are rendered
+function attachReplyHandlers() {
+  const comments = commentsContainer.querySelectorAll('.comment');
+  comments.forEach(commentEl => {
+    const time = commentEl.getAttribute('data-time');
+    const replyLink = commentEl.querySelector('.reply-link');
+    const commentActions = commentEl.querySelector('.comment-actions span');
+
+    if (replyLink) {
+      replyLink.onclick = () => openReplyModal(commentEl, parseInt(time));
+    }
+    if (commentActions) {
+      commentActions.onclick = () => openReplyModal(commentEl, parseInt(time));
+    }
+  });
+}
+
+// Patch renderComments to auto-attach reply handlers
+const _renderComments = renderComments;
+renderComments = function(title) {
+  _renderComments(title);
+  attachReplyHandlers();
+};
+
