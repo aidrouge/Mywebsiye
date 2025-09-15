@@ -457,7 +457,7 @@ renderComments = function(title) {
   attachReplyHandlers();
 };
 
-// -------- Reply Modal --------
+// -------- Replies Modal --------
 const replyModal = document.getElementById('replyModal');
 const replyList = document.getElementById('replyList');
 const replyInput = document.getElementById('replyInput');
@@ -526,6 +526,7 @@ replySubmit.addEventListener('click', () => {
   replyInput.value = '';
   replyModal.style.display = 'none';
 
+  // re-render comments to refresh 💬 count and re-bind links
   renderComments(selectedTitle);
 });
 
