@@ -61,39 +61,7 @@ body{
 /* -------------------------
    Horizontal scrolling address-bar (mobile friendly)
    ------------------------- */
-.address-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--glass);
-  padding: 8px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--outline);
-  max-width: 100%;
 
-  /* enable horizontal scrolling */
-  overflow-x: auto;
-  overflow-y: hidden;
-
-  /* smooth touch scrolling on iOS */
-  -webkit-overflow-scrolling: touch;
-
-  /* keep items on one line */
-  white-space: nowrap;
-}
-
-/* hide native scrollbar (optional, nice clean look) */
-.address-bar::-webkit-scrollbar { display: none; }
-.address-bar { scrollbar-width: none; -ms-overflow-style: none; }
-
-/* make sure items do NOT shrink so they stay inline and can be scrolled */
-.address-bar > * { flex: 0 0 auto; margin-right: 8px; }
-
-/* reasonable min widths so selects / buttons are usable on small screens */
-.topic-select { min-width: 120px; }
-.topic-subselect { min-width: 100px; }
-.topic-action { min-width: 80px; }
-.address-text { min-width: 60px; }
 
 .address-dot{width:6px;height:6px;background:var(--accent);border-radius:6px;}
 .topic-select,.topic-subselect{background:var(--pill);border:1px solid var(--outline);color:#fff;padding:6px 8px;border-radius:8px;margin-left:8px;cursor:pointer;font-size:14px}
