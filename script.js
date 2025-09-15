@@ -132,18 +132,14 @@ function renderTopbarControls(){
     return s;
   }
 
-  if(activeCategory === 'genres'){
-    const sel = makeSelect(data.genres, selectedItem || data.genres[0], 'topic-select');
-    sel.addEventListener('change', () => {
-      selectedItem = sel.value;
-      selectedAuthor = selectedSeries = selectedTitle = null;
-      updateHeaderText();
-      highlightSidebarActive();
-    });
-    topbarControls.appendChild(sel);
-    selectedItem = selectedItem || data.genres[0];
-    updateHeaderText();
-  }
+ if (activeCategory === 'genres') {
+  // Only show topicTitle = selectedItem (genre)
+  selectedItem = selectedItem || data.genres[0];
+  topicTitle.textContent = selectedItem;
+  // Clear other controls
+  // (we already cleared topbarControls earlier in clearTopbarControls)
+}
+
 
   else if(activeCategory === 'authors'){
     const authors = Object.keys(data.authors);
