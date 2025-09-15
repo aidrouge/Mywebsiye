@@ -1,72 +1,167 @@
 {
-"genres": ["Fiction", "Non-Fiction", "Mystery", "Sci-Fi", "Romance", "Thriller", "Fantasy"],
-"authors": {
-"J.K. Rowling": {
-"titles": ["Harry Potter and the Sorcerer's Stone", "Harry Potter and the Chamber of Secrets", "Harry Potter and the Prisoner of Azkaban"],
-"series": ["Harry Potter"]
-},
-"George R.R. Martin": {
-"titles": ["A Game of Thrones", "A Clash of Kings"],
-"series": ["A Song of Ice and Fire"]
-},
-"Jane Austen": {
-"titles": ["Pride and Prejudice"],
-"series": []
-},
-"Isaac Asimov": {
-"titles": ["Foundation"],
-"series": ["Foundation"]
-},
-"Agatha Christie": {
-"titles": ["The Murder of Roger Ackroyd"],
-"series": []
-}
-},
-"series": {
-"Harry Potter": ["Harry Potter and the Sorcerer's Stone", "Harry Potter and the Chamber of Secrets", "Harry Potter and the Prisoner of Azkaban"],
-"A Song of Ice and Fire": ["A Game of Thrones", "A Clash of Kings"],
-"Foundation": ["Foundation"]
-},
-"titles": {
-"Harry Potter and the Sorcerer's Stone": {
-"author": "J.K. Rowling",
-"series": "Harry Potter"
-},
-"Harry Potter and the Chamber of Secrets": {
-"author": "J.K. Rowling",
-"series": "Harry Potter"
-},
-"Harry Potter and the Prisoner of Azkaban": {
-"author": "J.K. Rowling",
-"series": "Harry Potter"
-},
-"A Game of Thrones": {
-"author": "George R.R. Martin",
-"series": "A Song of Ice and Fire"
-},
-"A Clash of Kings": {
-"author": "George R.R. Martin",
-"series": "A Song of Ice and Fire"
-},
-"Pride and Prejudice": {
-"author": "Jane Austen",
-"series": null
-},
-"Foundation": {
-"author": "Isaac Asimov",
-"series": "Foundation"
-},
-"The Murder of Roger Ackroyd": {
-"author": "Agatha Christie",
-"series": null
-},
-"To Kill a Mockingbird": {
-"author": "Harper Lee",
-"series": null
-},
-"1984": {
-"author": "George Orwell",
-"series": null
-}
-}
+  "genres": [
+    "Fiction", "Non-Fiction", "Mystery", "Sci-Fi", "Romance", "Thriller", "Fantasy",
+    "Historical", "Biography", "Horror", "Comedy", "Drama", "Adventure", "Philosophy"
+  ],
+  "authors": {
+    "J.K. Rowling": {
+      "titles": [
+        "Harry Potter and the Sorcerer's Stone",
+        "Harry Potter and the Chamber of Secrets",
+        "Harry Potter and the Prisoner of Azkaban",
+        "Harry Potter and the Goblet of Fire"
+      ],
+      "series": ["Harry Potter"]
+    },
+    "George R.R. Martin": {
+      "titles": [
+        "A Game of Thrones",
+        "A Clash of Kings",
+        "A Storm of Swords"
+      ],
+      "series": ["A Song of Ice and Fire"]
+    },
+    "Jane Austen": {
+      "titles": ["Pride and Prejudice", "Sense and Sensibility"],
+      "series": []
+    },
+    "Isaac Asimov": {
+      "titles": ["Foundation", "I, Robot", "The Caves of Steel"],
+      "series": ["Foundation"]
+    },
+    "Agatha Christie": {
+      "titles": [
+        "The Murder of Roger Ackroyd",
+        "Murder on the Orient Express",
+        "And Then There Were None"
+      ],
+      "series": []
+    },
+    "Harper Lee": {
+      "titles": ["To Kill a Mockingbird"],
+      "series": []
+    },
+    "George Orwell": {
+      "titles": ["1984", "Animal Farm"],
+      "series": []
+    },
+    "J.R.R. Tolkien": {
+      "titles": [
+        "The Hobbit",
+        "The Fellowship of the Ring",
+        "The Two Towers",
+        "The Return of the King"
+      ],
+      "series": ["The Lord of the Rings"]
+    }
+  },
+  "series": {
+    "Harry Potter": [
+      "Harry Potter and the Sorcerer's Stone",
+      "Harry Potter and the Chamber of Secrets",
+      "Harry Potter and the Prisoner of Azkaban",
+      "Harry Potter and the Goblet of Fire"
+    ],
+    "A Song of Ice and Fire": [
+      "A Game of Thrones",
+      "A Clash of Kings",
+      "A Storm of Swords"
+    ],
+    "Foundation": ["Foundation"],
+    "The Lord of the Rings": [
+      "The Fellowship of the Ring",
+      "The Two Towers",
+      "The Return of the King"
+    ]
+  },
+  "titles": {
+    "Harry Potter and the Sorcerer's Stone": {
+      "author": "J.K. Rowling",
+      "series": "Harry Potter"
+    },
+    "Harry Potter and the Chamber of Secrets": {
+      "author": "J.K. Rowling",
+      "series": "Harry Potter"
+    },
+    "Harry Potter and the Prisoner of Azkaban": {
+      "author": "J.K. Rowling",
+      "series": "Harry Potter"
+    },
+    "Harry Potter and the Goblet of Fire": {
+      "author": "J.K. Rowling",
+      "series": "Harry Potter"
+    },
+    "A Game of Thrones": {
+      "author": "George R.R. Martin",
+      "series": "A Song of Ice and Fire"
+    },
+    "A Clash of Kings": {
+      "author": "George R.R. Martin",
+      "series": "A Song of Ice and Fire"
+    },
+    "A Storm of Swords": {
+      "author": "George R.R. Martin",
+      "series": "A Song of Ice and Fire"
+    },
+    "Pride and Prejudice": {
+      "author": "Jane Austen",
+      "series": null
+    },
+    "Sense and Sensibility": {
+      "author": "Jane Austen",
+      "series": null
+    },
+    "Foundation": {
+      "author": "Isaac Asimov",
+      "series": "Foundation"
+    },
+    "I, Robot": {
+      "author": "Isaac Asimov",
+      "series": null
+    },
+    "The Caves of Steel": {
+      "author": "Isaac Asimov",
+      "series": null
+    },
+    "The Murder of Roger Ackroyd": {
+      "author": "Agatha Christie",
+      "series": null
+    },
+    "Murder on the Orient Express": {
+      "author": "Agatha Christie",
+      "series": null
+    },
+    "And Then There Were None": {
+      "author": "Agatha Christie",
+      "series": null
+    },
+    "To Kill a Mockingbird": {
+      "author": "Harper Lee",
+      "series": null
+    },
+    "1984": {
+      "author": "George Orwell",
+      "series": null
+    },
+    "Animal Farm": {
+      "author": "George Orwell",
+      "series": null
+    },
+    "The Hobbit": {
+      "author": "J.R.R. Tolkien",
+      "series": null
+    },
+    "The Fellowship of the Ring": {
+      "author": "J.R.R. Tolkien",
+      "series": "The Lord of the Rings"
+    },
+    "The Two Towers": {
+      "author": "J.R.R. Tolkien",
+      "series": "The Lord of the Rings"
+    },
+    "The Return of the King": {
+      "author": "J.R.R. Tolkien",
+      "series": "The Lord of the Rings"
+    }
+  }
 }
