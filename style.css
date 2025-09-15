@@ -61,7 +61,39 @@ body{
 /* -------------------------
    Horizontal scrolling address-bar (mobile friendly)
    ------------------------- */
+.address-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--glass);
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--outline);
+  max-width: 100%;
 
+  /* enable horizontal scrolling */
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  /* smooth touch scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+
+  /* keep items on one line */
+  white-space: nowrap;
+}
+
+/* hide native scrollbar (optional, nice clean look) */
+.address-bar::-webkit-scrollbar { display: none; }
+.address-bar { scrollbar-width: none; -ms-overflow-style: none; }
+
+/* make sure items do NOT shrink so they stay inline and can be scrolled */
+.address-bar > * { flex: 0 0 auto; margin-right: 8px; }
+
+/* reasonable min widths so selects / buttons are usable on small screens */
+.topic-select { min-width: 120px; }
+.topic-subselect { min-width: 100px; }
+.topic-action { min-width: 80px; }
+.address-text { min-width: 60px; }
 
 .address-dot{width:6px;height:6px;background:var(--accent);border-radius:6px;}
 .topic-select,.topic-subselect{background:var(--pill);border:1px solid var(--outline);color:#fff;padding:6px 8px;border-radius:8px;margin-left:8px;cursor:pointer;font-size:14px}
@@ -85,40 +117,18 @@ body{
   padding:10px;
   background:var(--bg);
 }
-/* Replace the old .comment-topbar .address-bar block with this */
 .comment-topbar .address-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  background: var(--glass);
-  padding: 8px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--outline);
-  margin: 8px 10px;
-  max-width: calc(100% - 20px);
-
-  /* enable horizontal scrolling */
-  overflow-x: auto;
-  overflow-y: hidden;
-
-  /* smooth touch scrolling on iOS */
-  -webkit-overflow-scrolling: touch;
-
-  /* keep items on one line */
-  white-space: nowrap;
+  display:flex;align-items:center;gap:8px;
+  background:var(--glass);
+  padding:8px 12px;
+  border-radius:20px;
+  border:1px solid var(--outline);
+  margin:8px 10px;
+  max-width:calc(100% - 20px);
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
 }
-
-/* ensure the items inside don't shrink so they remain scrollable */
-.comment-topbar .address-bar > * {
-  flex: 0 0 auto;
-  margin-right: 8px;
-}
-
-/* hide default browser scrollbar (optional) */
-.comment-topbar .address-bar::-webkit-scrollbar { display: none; }
-.comment-topbar .address-bar { scrollbar-width: none; -ms-overflow-style: none; }
-
 
 .header-tab{font-size:14px;color:var(--muted);} 
 .header-comment{font-size:14px;font-weight:600;} 
@@ -194,85 +204,3 @@ body{
   margin: 6px 0;
 }
 .sidebar-user {margin-top: auto;position: relative;z-index: 10;}
-/* reply modal inside comments (hidden by default) */
-.reply-modal {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: none;               /* hide by default */
-  z-index: 60;                 /* above comment-topbar (50) */
-  background: var(--card);     /* dark background to match area */
-  border: 1px solid rgba(255,255,255,0.03);
-  border-radius: 8px;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-/* open state */
-.reply-modal.open {
-  display: flex;
-  flex-direction: column;
-}
-
-/* inner content takes full height */
-.reply-modal-content {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-/* header */
-.reply-modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid rgba(255,255,255,0.03);
-  background: linear-gradient(180deg, rgba(0,0,0,0.02), transparent);
-  font-weight: 600;
-}
-
-/* replies list area */
-.reply-list {
-  flex: 1;
-  overflow-y: auto;
-  padding: 12px;
-  gap: 8px;
-}
-
-/* each reply */
-.reply {
-  padding: 8px;
-  border-bottom: 1px solid rgba(255,255,255,0.02);
-}
-
-/* input bar */
-.reply-input-bar {
-  padding: 10px;
-  display: flex;
-  gap: 10px;
-  border-top: 1px solid rgba(255,255,255,0.03);
-  background: linear-gradient(0deg, rgba(0,0,0,0.02), transparent);
-}
-.reply-input-bar textarea {
-  flex: 1;
-  min-height: 44px;
-  resize: vertical;
-  background: #111;
-  border: 1px solid rgba(255,255,255,0.04);
-  color: #fff;
-  padding: 8px;
-  border-radius: 6px;
-}
-.reply-input-bar button {
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: none;
-  background: var(--accent);
-  color: #000;
-  font-weight: 700;
-  cursor: pointer;
-}
