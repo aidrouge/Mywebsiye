@@ -95,7 +95,10 @@ function renderComments(title) {
         <div class="comment-text">${c.text}</div>
         <div class="comment-footer">
           <div class="reply-link">Reply</div>
-          <div class="comment-actions"><span>👍 ${c.upvotes}</span></div>
+<div class="comment-actions">
+  <span>💬 ${c.replies || 0}</span>
+  <span>👍 ${c.upvotes || 0}</span>
+</div>
         </div>
       </div>
     `;
