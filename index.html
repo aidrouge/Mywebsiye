@@ -45,50 +45,50 @@
       <button id="menuBtn" class="icon-btn" aria-label="Open menu">☰</button>
     </header>
 
-    <div class="comment-section">
-      <div class="comment-topbar">
-        <div class="header-section" id="headerSection">
-          <span class="header-tab" id="categoryName">Genres</span>
-          <span class="header-comment">Comment 1.65K</span>
-          <span class="header-bell">🔔</span>
-        </div>
+   <div class="comment-section">
+  <div class="comment-topbar">
+    <div class="header-section" id="headerSection">
+      <span class="header-tab" id="categoryName">Genres</span>
+      <span class="header-comment">Comment 1.65K</span>
+      <span class="header-bell">🔔</span>
+    </div>
 
-        <div class="address-bar" id="topbarControls" aria-live="polite">
-          <div class="address-dot" aria-hidden="true"></div>
-          <!-- contextual controls injected here -->
-          <div class="address-text" id="topicTitle" aria-atomic="true">Select a topic</div>
-        </div>
+    <div class="address-bar" id="topbarControls" aria-live="polite">
+      <div class="address-dot" aria-hidden="true"></div>
+      <!-- contextual controls injected here -->
+      <div class="address-text" id="topicTitle" aria-atomic="true">Select a topic</div>
+    </div>
 
-        <div class="sort-buttons">
-          <button class="active" data-sort="recommended">Recommended</button>
-          <button data-sort="rating">Rating</button>
-          <button data-sort="hot">Hot</button>
-          <button data-sort="newest">Newest</button>
-        </div>
+    <div class="sort-buttons">
+      <button class="active" data-sort="recommended">Recommended</button>
+      <button data-sort="rating">Rating</button>
+      <button data-sort="hot">Hot</button>
+      <button data-sort="newest">Newest</button>
+    </div>
+  </div>
+
+  <!-- Comments dynamically injected -->
+  <div id="comments">
+  <!-- Comments dynamically injected here -->
+
+  <!-- Replies Modal -->
+  <div id="replyModal" class="reply-modal" hidden>
+    <div class="reply-modal-content">
+      <div class="reply-modal-header">
+        <span>Replies</span>
+        <button id="closeReplyModal">✖</button>
       </div>
-
-      <!-- Comments dynamically injected -->
-      <div id="comments">
-        <!-- Comments injected by JS -->
-
-        <!-- Replies Modal -->
-        <div id="replyModal" class="reply-modal" aria-hidden="true">
-          <div class="reply-modal-content">
-            <div class="reply-modal-header">
-              <span>Replies</span>
-              <button id="closeReplyModal" aria-label="Close replies">✖</button>
-            </div>
-
-            <div id="replyList" class="reply-list"></div>
-
-            <div class="reply-input-bar">
-              <textarea id="replyInput" placeholder="Write a reply..." rows="2"></textarea>
-              <button id="replySubmit">Reply</button>
-            </div>
-          </div>
-        </div>
+      <div id="replyList" class="reply-list"></div>
+      <div class="reply-input-bar">
+        <textarea id="replyInput" placeholder="Write a reply..."></textarea>
+        <button id="replySubmit">Reply</button>
       </div>
     </div>
+  </div>
+</div>
+
+</div>
+
   </main>
 
   <div class="bottom-bar" role="toolbar" aria-label="Comment input">
@@ -100,7 +100,6 @@
     </div>
   </div>
 
-  <!-- Login Modal (kept) -->
   <div id="modal" class="modal">
     <div class="modal-content">
       <div class="modal-title">Sign Up</div>
