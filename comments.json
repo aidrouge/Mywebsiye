@@ -1,0 +1,84 @@
+{
+  "Harry Potter and the Sorcerer's Stone": [
+    {
+      "username": "MagicFan99",
+      "avatar": "https://example.com/avatars/magic1.jpg",
+      "time": "2025-09-10T14:32:00",
+      "rating": 4.8,
+      "text": "This book was my childhood! ⚡ Hogwarts forever.",
+      "replies": 2,
+      "likes": 15
+    },
+    {
+      "username": "HermioneRules",
+      "avatar": "https://example.com/avatars/hermione.jpg",
+      "time": "2025-09-11T09:20:00",
+      "rating": 5.0,
+      "text": "Re-reading it for the 5th time, never gets old.",
+      "replies": 0,
+      "likes": 8
+    }
+  ],
+  "A Game of Thrones": [
+    {
+      "username": "WinterIsComing",
+      "avatar": "https://example.com/avatars/got1.jpg",
+      "time": "2025-09-12T19:45:00",
+      "rating": 4.7,
+      "text": "The politics and betrayals are unmatched! 🐺❄️",
+      "replies": 5,
+      "likes": 20
+    },
+    {
+      "username": "DragonQueen",
+      "avatar": "https://example.com/avatars/dany.jpg",
+      "time": "2025-09-13T11:05:00",
+      "rating": 5.0,
+      "text": "Daenerys is the best character hands down 🔥🐉",
+      "replies": 3,
+      "likes": 12
+    }
+  ],
+  "Foundation": [
+    {
+      "username": "SciFiNerd",
+      "avatar": "https://example.com/avatars/scifi.jpg",
+      "time": "2025-09-14T18:00:00",
+      "rating": 4.5,
+      "text": "The scope of this universe is insane 🤯",
+      "replies": 1,
+      "likes": 5
+    },
+    {
+      "username": "IsaacForever",
+      "avatar": "https://example.com/avatars/asimov.jpg",
+      "time": "2025-09-15T07:30:00",
+      "rating": 5.0,
+      "text": "Asimov was way ahead of his time.",
+      "replies": 0,
+      "likes": 9
+    }
+  ],
+  "Pride and Prejudice": [
+    {
+      "username": "RomanceReader",
+      "avatar": "https://example.com/avatars/romance.jpg",
+      "time": "2025-09-11T20:11:00",
+      "rating": 4.9,
+      "text": "Mr. Darcy ❤️ timeless classic.",
+      "replies": 4,
+      "likes": 30
+    }
+  ],
+  "1984": [
+    {
+      "username": "BigBrother",
+      "avatar": "https://example.com/avatars/orwell.jpg",
+      "time": "2025-09-09T22:00:00",
+      "rating": 5.0,
+      "text": "Scarily relevant even today 😨📖",
+      "replies": 6,
+      "likes": 40
+    }
+  ]
+}
