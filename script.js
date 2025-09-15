@@ -3,10 +3,10 @@ let data = {};
 let commentsData = {};
 
 let activeCategory = 'genres';
-let selectedItem = null;
-let selectedAuthor = null;
-let selectedSeries = null;
-let selectedTitle = null;
+let selectedItem = null;        
+let selectedAuthor = null;      
+let selectedSeries = null;      
+let selectedTitle = null;       
 
 // -------- Elements --------
 const sidebar = document.getElementById('sidebar');
@@ -23,61 +23,51 @@ const modal = document.getElementById('modal');
 const sortButtons = document.querySelectorAll('.sort-buttons button');
 const commentsContainer = document.getElementById('comments');
 
-// Reply modal elements (single set)
-const replyModalEl = document.getElementById('replyModal');
-const replyListEl = document.getElementById('replyList');
-const replyInputEl = document.getElementById('replyInput');
-const replySubmitBtn = document.getElementById('replySubmit');
-const closeReplyBtn = document.getElementById('closeReplyModal');
-
-let activeCommentId = null;
-
 // -------- Helpers --------
 function isMobile() { return window.innerWidth < 768; }
 
-function getItemsForCategory(cat) {
-  if (!data) return [];
-  if (cat === 'genres') return (data.genres || []).slice();
-  if (cat === 'authors') return Object.keys(data.authors || {});
-  if (cat === 'series') return Object.keys(data.series || {});
-  if (cat === 'titles') return Object.keys(data.titles || {});
+function getItemsForCategory(cat){
+  if(cat === 'genres') return data.genres.slice();
+  if(cat === 'authors') return Object.keys(data.authors);
+  if(cat === 'series') return Object.keys(data.series);
+  if(cat === 'titles') return Object.keys(data.titles);
   return [];
 }
 
-function updateHeaderText() {
+function updateHeaderText(){
   categoryName.textContent = activeCategory.charAt(0).toUpperCase() + activeCategory.slice(1);
   topicTitle.textContent = selectedItem || 'Select a topic';
 }
 
 // -------- Sidebar --------
-function updateSidebarList(cat) {
+function updateSidebarList(cat){
   sidebarList.innerHTML = '';
   const items = getItemsForCategory(cat);
-  items.forEach(item => {
+  items.forEach(item=>{
     const el = document.createElement('div');
     el.className = 'sidebar-item';
     el.textContent = item;
     el.tabIndex = 0;
-    el.setAttribute('role', 'button');
+    el.setAttribute('role','button');
     el.onclick = () => {
       selectedItem = item;
-      if (cat === 'authors') { selectedAuthor = item; selectedSeries = null; selectedTitle = null; }
-      if (cat === 'series') { selectedSeries = item; selectedAuthor = null; selectedTitle = null; }
-      if (cat === 'titles') { selectedTitle = item; selectedAuthor = null; selectedSeries = null; }
+      if(cat === 'authors'){ selectedAuthor = item; selectedSeries = null; selectedTitle = null; }
+      if(cat === 'series'){ selectedSeries = item; selectedAuthor = null; selectedTitle = null; }
+      if(cat === 'titles'){ selectedTitle = item; selectedAuthor = null; selectedSeries = null; }
       updateHeaderText();
       renderTopbarControls();
       highlightSidebarActive();
       if (isMobile()) closeSidebar();
     };
-    el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } });
+    el.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); el.click(); } });
     sidebarList.appendChild(el);
   });
   highlightSidebarActive();
 }
 
-function highlightSidebarActive() {
+function highlightSidebarActive(){
   const nodes = sidebarList.querySelectorAll('.sidebar-item');
-  nodes.forEach(n => {
+  nodes.forEach(n=>{
     n.classList.toggle('active', selectedItem && n.textContent === selectedItem);
   });
 }
@@ -86,7 +76,7 @@ function highlightSidebarActive() {
 function renderComments(title) {
   commentsContainer.innerHTML = '';
 
-  if (!title || !commentsData[title] || !Array.isArray(commentsData[title]) || commentsData[title].length === 0) {
+  if (!title || !commentsData[title]) {
     commentsContainer.innerHTML = '<p class="no-comments">No comments yet.</p>';
     return;
   }
@@ -96,24 +86,23 @@ function renderComments(title) {
     div.className = 'comment';
     div.setAttribute('data-time', c.time);
 
-    const repliesCount = c.replies || (Array.isArray(c.repliesList) ? c.repliesList.length : 0);
-
     div.innerHTML = `
       <div class="comment-avatar" style="background:#444;"></div>
       <div class="comment-content">
         <div class="comment-username">Anonymous</div>
         <div class="comment-time">${new Date(c.time).toLocaleString()}</div>
-        <div class="comment-rating">Rating: <span class="stars">★★★★★ ${Number(c.rating || 0).toFixed(1)}</span></div>
+        <div class="comment-rating">Rating: <span class="stars">★★★★★ ${c.rating.toFixed(1)}</span></div>
         <div class="comment-text">${c.text}</div>
         <div class="comment-footer">
-          <div class="reply-link" role="button" tabindex="0">Reply</div>
-          <div class="comment-actions">
-            <span class="comment-bubble" role="button" tabindex="0">💬 ${repliesCount}</span>
-            <span class="upvote">👍 ${c.upvotes || 0}</span>
-          </div>
+          <div class="reply-link">Reply</div>
+<div class="comment-actions">
+  <span>💬 ${c.replies || 0}</span>
+  <span>👍 ${c.upvotes || 0}</span>
+</div>
         </div>
       </div>
     `;
+
     commentsContainer.appendChild(div);
   });
 
@@ -122,11 +111,11 @@ function renderComments(title) {
 }
 
 // -------- Topbar contextual controls --------
-function clearTopbarControls() {
+function clearTopbarControls(){
   topbarControls.innerHTML = '';
-  const dot = document.createElement('div');
-  dot.className = 'address-dot';
-  dot.setAttribute('aria-hidden', 'true');
+  const dot = document.createElement('div'); 
+  dot.className='address-dot'; 
+  dot.setAttribute('aria-hidden','true');
   topbarControls.appendChild(dot);
 }
 
@@ -146,18 +135,20 @@ function renderTopbarControls() {
     return s;
   }
 
-  // GENRES
+  // ---- GENRES ----
   if (activeCategory === 'genres') {
-    selectedItem = selectedItem || (data.genres && data.genres[0]);
+    selectedItem = selectedItem || data.genres[0];
     topicTitle.textContent = selectedItem;
   }
-  // AUTHORS
+
+  // ---- AUTHORS ----
   else if (activeCategory === 'authors') {
-    selectedAuthor = selectedAuthor || Object.keys(data.authors || {})[0];
+    selectedAuthor = selectedAuthor || Object.keys(data.authors)[0];
     selectedItem = selectedAuthor;
     topicTitle.textContent = selectedAuthor;
 
-    const titles = (data.authors && data.authors[selectedAuthor] && data.authors[selectedAuthor].titles) || [];
+    // Titles by this author
+    const titles = data.authors[selectedAuthor].titles || [];
     if (titles.length) {
       const selTitles = makeSelect(titles, selectedTitle || null, 'topic-subselect');
       selTitles.addEventListener('change', () => {
@@ -167,7 +158,8 @@ function renderTopbarControls() {
       topbarControls.appendChild(selTitles);
     }
 
-    const sers = (data.authors && data.authors[selectedAuthor] && data.authors[selectedAuthor].series) || [];
+    // Series by this author
+    const sers = data.authors[selectedAuthor].series || [];
     if (sers.length) {
       const selSeries = makeSelect(sers, selectedSeries || null, 'topic-subselect');
       selSeries.addEventListener('change', () => {
@@ -177,19 +169,22 @@ function renderTopbarControls() {
       topbarControls.appendChild(selSeries);
     }
   }
-  // SERIES
+
+  // ---- SERIES ----
   else if (activeCategory === 'series') {
-    selectedSeries = selectedSeries || Object.keys(data.series || {})[0];
+    selectedSeries = selectedSeries || Object.keys(data.series)[0];
     selectedItem = selectedSeries;
     topicTitle.textContent = selectedSeries;
 
+    // Author of this series (needs mapping in data.seriesAuthor)
     if (data.seriesAuthor && data.seriesAuthor[selectedSeries]) {
       const spanAuthor = document.createElement('span');
       spanAuthor.textContent = data.seriesAuthor[selectedSeries];
       topbarControls.appendChild(spanAuthor);
     }
 
-    const titles = data.series && data.series[selectedSeries] || [];
+    // Titles in this series
+    const titles = data.series[selectedSeries] || [];
     if (titles.length) {
       const selTitles = makeSelect(titles, selectedTitle || null, 'topic-subselect');
       selTitles.addEventListener('change', () => {
@@ -199,60 +194,68 @@ function renderTopbarControls() {
       topbarControls.appendChild(selTitles);
     }
   }
-  // TITLES
+
+  // ---- TITLES ----
   else if (activeCategory === 'titles') {
-    selectedTitle = selectedTitle || Object.keys(data.titles || {})[0];
+    selectedTitle = selectedTitle || Object.keys(data.titles)[0];
     selectedItem = selectedTitle;
     topicTitle.textContent = selectedTitle;
 
-    const info = data.titles && data.titles[selectedTitle] || {};
+    const info = data.titles[selectedTitle] || {};
 
+    // Author of this title
     if (info.author) {
       const spanAuthor = document.createElement('span');
       spanAuthor.textContent = info.author;
       topbarControls.appendChild(spanAuthor);
     }
+
+    // Series of this title
     if (info.series) {
       const spanSeries = document.createElement('span');
       spanSeries.textContent = info.series;
       topbarControls.appendChild(spanSeries);
     }
 
+    // Always show comments for titles
     renderComments(selectedTitle);
   }
 
-  // ensure topicTitle is right after dot
-  if (!topbarControls.contains(topicTitle)) {
+  // Make sure topicTitle is always right after the dot
+if (!topbarControls.contains(topicTitle)) {
+  // insert after the first child (the dot)
+  topbarControls.insertBefore(topicTitle, topbarControls.children[1] || null);
+} else {
+  // if it already exists but is not in the right spot, move it
+  if (topbarControls.children[1] !== topicTitle) {
+    topbarControls.removeChild(topicTitle);
     topbarControls.insertBefore(topicTitle, topbarControls.children[1] || null);
-  } else {
-    if (topbarControls.children[1] !== topicTitle) {
-      topbarControls.removeChild(topicTitle);
-      topbarControls.insertBefore(topicTitle, topbarControls.children[1] || null);
-    }
   }
 }
 
+}
+
+
 // -------- Category switching --------
-function switchCategory(cat, preselect = null) {
+function switchCategory(cat, preselect = null){
   activeCategory = cat;
-  quickBtns.forEach(btn => {
+  quickBtns.forEach(btn=>{
     const is = btn.dataset.category === cat;
     btn.classList.toggle('active', is);
     btn.setAttribute('aria-selected', is ? 'true' : 'false');
   });
-
-  if (preselect) {
-    if (cat === 'authors') { selectedAuthor = preselect; selectedItem = preselect; selectedSeries = null; selectedTitle = null; }
-    if (cat === 'series') { selectedSeries = preselect; selectedItem = preselect; selectedAuthor = null; selectedTitle = null; }
-    if (cat === 'titles') { selectedTitle = preselect; selectedItem = preselect; selectedAuthor = null; selectedSeries = null; }
-    if (cat === 'genres') { selectedItem = preselect; }
+  if(preselect){
+    if(cat === 'authors'){ selectedAuthor = preselect; selectedItem = preselect; selectedSeries = null; selectedTitle = null; }
+    if(cat === 'series'){ selectedSeries = preselect; selectedItem = preselect; selectedAuthor = null; selectedTitle = null; }
+    if(cat === 'titles'){ selectedTitle = preselect; selectedItem = preselect; selectedAuthor = null; selectedSeries = null; }
+    if(cat === 'genres'){ selectedItem = preselect; }
   } else {
     const items = getItemsForCategory(cat);
-    if (items.length && !getItemsForCategory(cat).includes(selectedItem)) {
+    if(items.length && !getItemsForCategory(cat).includes(selectedItem)) {
       selectedItem = items[0];
-      if (cat === 'authors') selectedAuthor = selectedItem;
-      if (cat === 'series') selectedSeries = selectedItem;
-      if (cat === 'titles') selectedTitle = selectedItem;
+      if(cat === 'authors') selectedAuthor = selectedItem;
+      if(cat === 'series') selectedSeries = selectedItem;
+      if(cat === 'titles') selectedTitle = selectedItem;
     }
   }
 
@@ -267,49 +270,49 @@ function switchCategory(cat, preselect = null) {
 }
 
 // -------- Sidebar open/close --------
-menuBtn.addEventListener('click', () => { if (!isMobile()) return; sidebar.classList.add('open'); overlay.hidden = false; document.body.classList.add('no-scroll'); });
+menuBtn.addEventListener('click', () => { if(!isMobile()) return; sidebar.classList.add('open'); overlay.hidden = false; document.body.classList.add('no-scroll'); });
 sidebarClose.addEventListener('click', closeSidebar);
 overlay.addEventListener('click', closeSidebar);
-function closeSidebar() { sidebar.classList.remove('open'); overlay.hidden = true; document.body.classList.remove('no-scroll'); }
-window.addEventListener('resize', () => { if (!isMobile()) closeSidebar(); });
+function closeSidebar(){ sidebar.classList.remove('open'); overlay.hidden = true; document.body.classList.remove('no-scroll'); }
+window.addEventListener('resize', ()=>{ if(!isMobile()) closeSidebar(); });
 
 // -------- Quick buttons --------
-quickBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
+quickBtns.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
     const cat = btn.dataset.category;
     switchCategory(cat);
   });
 });
 
 // -------- Comments modal & sort --------
-commentInput.addEventListener('click', () => { modal.style.display = 'flex'; });
-window.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
+commentInput.addEventListener('click', ()=>{ modal.style.display = 'flex'; });
+window.addEventListener('click', (e)=>{ if(e.target === modal) modal.style.display = 'none'; });
 
-sortButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    sortButtons.forEach(b => b.classList.remove('active'));
+sortButtons.forEach(button=>{
+  button.addEventListener('click', ()=>{
+    sortButtons.forEach(b=>b.classList.remove('active'));
     button.classList.add('active');
     const sortBy = button.dataset.sort;
     sortComments(sortBy);
   });
 });
 
-function sortComments(sortBy) {
+function sortComments(sortBy){
   const comments = Array.from(commentsContainer.getElementsByClassName('comment'));
-  comments.sort((a, b) => {
+  comments.sort((a,b)=>{
     const timeA = new Date(a.getAttribute('data-time'));
     const timeB = new Date(b.getAttribute('data-time'));
-    const getUpvotes = (el) => {
+    const getUpvotes = (el)=>{
       const spans = el.querySelectorAll('.comment-actions span');
-      return spans.length ? parseInt((spans[spans.length - 1].textContent || '').replace(/[^\d]/g, '')) || 0 : 0;
+      return spans.length ? parseInt((spans[spans.length-1].textContent||'').replace(/[^\d]/g,''))||0 : 0;
     };
     const upA = getUpvotes(a), upB = getUpvotes(b);
-    if (sortBy === 'newest') return timeB - timeA;
-    if (sortBy === 'recommended' || sortBy === 'hot') return (upB - upA) || (timeB - timeA);
-    if (sortBy === 'rating') {
+    if(sortBy === 'newest') return timeB - timeA;
+    if(sortBy === 'recommended' || sortBy === 'hot') return (upB - upA) || (timeB - timeA);
+    if(sortBy === 'rating'){
       const getRating = el => {
         const s = el.querySelector('.stars');
-        if (!s) return 0;
+        if(!s) return 0;
         const txt = s.textContent || '';
         const match = txt.match(/([\d.]+)$/);
         return match ? parseFloat(match[1]) : 0;
@@ -324,9 +327,9 @@ function sortComments(sortBy) {
 // -------- Programmatic API --------
 window.setTopic = (category, item) => {
   category = String(category).toLowerCase();
-  if (!['genres', 'authors', 'series', 'titles'].includes(category)) return;
+  if(!['genres','authors','series','titles'].includes(category)) return;
   const items = getItemsForCategory(category);
-  if (!items.includes(item)) return;
+  if(!items.includes(item)) return;
   switchCategory(category, item);
   selectedItem = item;
   updateHeaderText();
@@ -338,83 +341,20 @@ Promise.all([
   fetch('data.json').then(r => r.json()),
   fetch('comments.json').then(r => r.json())
 ])
-  .then(([jsonData, jsonComments]) => {
-    data = jsonData || {};
-    commentsData = jsonComments || {};
+.then(([jsonData, jsonComments]) => {
+  data = jsonData;
+  commentsData = jsonComments;
 
-    // Start in Titles view with the first available title
-    switchCategory('titles');
-    const initial = getItemsForCategory('titles')[0];
-    if (initial) {
-      selectedTitle = initial;
-      selectedItem = initial;
-      updateHeaderText();
-      renderTopbarControls();
-      renderComments(initial);
-    }
-  })
-  .catch(err => console.error('Failed to load JSON:', err));
-
-// -------- Reply modal handling (single consolidated logic) --------
-function openReplyModal(commentTime) {
-  if (!replyModalEl) return;
-  activeCommentId = Number(commentTime);
-
-  const commentsArr = commentsData[selectedTitle] || [];
-  const comment = commentsArr.find(c => Number(c.time) === Number(activeCommentId));
-  const replies = (comment && Array.isArray(comment.repliesList)) ? comment.repliesList : [];
-
-  replyListEl.innerHTML = '';
-  if (!replies.length) {
-    replyListEl.innerHTML = '<p class="no-replies">No replies yet.</p>';
-  } else {
-    replies.forEach(r => {
-      const d = document.createElement('div');
-      d.className = 'reply';
-      d.innerHTML = `
-        <div class="reply-username">Anonymous</div>
-        <div class="reply-time">${new Date(r.time).toLocaleString()}</div>
-        <div class="reply-text">${r.text}</div>
-      `;
-      replyListEl.appendChild(d);
-    });
-  }
-
-  replyModalEl.classList.add('open');
-  replyModalEl.setAttribute('aria-hidden', 'false');
-  if (replyInputEl) { replyInputEl.value = ''; replyInputEl.focus(); }
+ // Start in Titles view with the first available title
+switchCategory('titles');
+const initial = getItemsForCategory('titles')[0];
+if (initial) {
+  selectedTitle = initial;
+  selectedItem = initial;
+  updateHeaderText();
+  renderTopbarControls();
+  renderComments(initial);
 }
 
-function closeReplyModalFn() {
-  if (!replyModalEl) return;
-  replyModalEl.classList.remove('open');
-  replyModalEl.setAttribute('aria-hidden', 'true');
-  activeCommentId = null;
-}
-
-if (closeReplyBtn) closeReplyBtn.addEventListener('click', closeReplyModalFn);
-if (replyModalEl) replyModalEl.addEventListener('click', (e) => { if (e.target === replyModalEl) closeReplyModalFn(); });
-
-if (replySubmitBtn) replySubmitBtn.addEventListener('click', () => {
-  if (!activeCommentId || !replyInputEl || !replyInputEl.value.trim()) return;
-  const commentsArr = commentsData[selectedTitle] || [];
-  const comment = commentsArr.find(c => Number(c.time) === Number(activeCommentId));
-  if (!comment) return;
-  comment.repliesList = comment.repliesList || [];
-  comment.repliesList.push({ time: Date.now(), text: replyInputEl.value.trim() });
-  comment.replies = (comment.replies || 0) + 1;
-  replyInputEl.value = '';
-  closeReplyModalFn();
-  renderComments(selectedTitle);
-});
-
-// Use event delegation to open modal from reply-link or comment-bubble
-commentsContainer.addEventListener('click', (e) => {
-  const replyLink = e.target.closest('.reply-link');
-  const bubble = e.target.closest('.comment-bubble');
-  const commentEl = e.target.closest('.comment');
-  if ((replyLink || bubble) && commentEl) {
-    const time = commentEl.getAttribute('data-time');
-    if (time) openReplyModal(Number(time));
-  }
-});
+})
+.catch(err => console.error('Failed to load JSON:', err));
