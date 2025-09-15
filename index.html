@@ -43,12 +43,7 @@
     <header class="topbar">
       <button id="menuBtn" class="icon-btn" aria-label="Open menu">☰</button>
 
-      <div class="address-bar" id="topbarControls" aria-live="polite">
-        <div class="address-dot" aria-hidden="true"></div>
-        <!-- contextual controls injected here -->
-        <!-- also show the selected topic -->
-        <div class="address-text" id="topicTitle" aria-atomic="true">Select a topic</div>
-      </div>
+      
     </header>
 
     <div class="header-section" id="headerSection">
@@ -58,6 +53,14 @@
     </div>
 
     <div class="comment-section">
+      <div class="comment-topbar">
+  <div class="address-bar" id="topbarControls" aria-live="polite">
+    <div class="address-dot" aria-hidden="true"></div>
+    <!-- contextual controls injected here -->
+    <div class="address-text" id="topicTitle" aria-atomic="true">Select a topic</div>
+  </div>
+</div>
+
       <div class="sort-buttons">
         <button class="active" data-sort="recommended">Recommended</button>
         <button data-sort="rating">Rating</button>
