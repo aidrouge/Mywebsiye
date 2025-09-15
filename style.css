@@ -117,18 +117,40 @@ body{
   padding:10px;
   background:var(--bg);
 }
+/* Replace the old .comment-topbar .address-bar block with this */
 .comment-topbar .address-bar {
-  display:flex;align-items:center;gap:8px;
-  background:var(--glass);
-  padding:8px 12px;
-  border-radius:20px;
-  border:1px solid var(--outline);
-  margin:8px 10px;
-  max-width:calc(100% - 20px);
-  overflow:hidden;
-  white-space:nowrap;
-  text-overflow:ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background: var(--glass);
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--outline);
+  margin: 8px 10px;
+  max-width: calc(100% - 20px);
+
+  /* enable horizontal scrolling */
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  /* smooth touch scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+
+  /* keep items on one line */
+  white-space: nowrap;
 }
+
+/* ensure the items inside don't shrink so they remain scrollable */
+.comment-topbar .address-bar > * {
+  flex: 0 0 auto;
+  margin-right: 8px;
+}
+
+/* hide default browser scrollbar (optional) */
+.comment-topbar .address-bar::-webkit-scrollbar { display: none; }
+.comment-topbar .address-bar { scrollbar-width: none; -ms-overflow-style: none; }
+
 
 .header-tab{font-size:14px;color:var(--muted);} 
 .header-comment{font-size:14px;font-weight:600;} 
