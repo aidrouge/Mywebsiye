@@ -176,7 +176,7 @@ function renderTopbarControls() {
     selectedItem = selectedSeries;
     topicTitle.textContent = selectedSeries;
 
-    // Show author of this series (if mapping exists)
+    // Author of this series (needs mapping in data.seriesAuthor)
     if (data.seriesAuthor && data.seriesAuthor[selectedSeries]) {
       const spanAuthor = document.createElement('span');
       spanAuthor.textContent = data.seriesAuthor[selectedSeries];
@@ -217,12 +217,13 @@ function renderTopbarControls() {
       topbarControls.appendChild(spanSeries);
     }
 
-    renderComments(selectedTitle); // show comments when on titles
+    // Always show comments for titles
+    renderComments(selectedTitle);
   }
 
-  // Always append the title at the front
+  // Make sure topicTitle is always visible
   if (!topbarControls.contains(topicTitle)) {
-    topbarControls.prepend(topicTitle);
+    topbarControls.appendChild(topicTitle);
   }
 }
 
