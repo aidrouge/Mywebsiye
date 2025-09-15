@@ -53,3 +53,61 @@
     /* small scrollbars */
     .sidebar-inner::-webkit-scrollbar,.comment-section::-webkit-scrollbar{height:8px;width:8px}
     .sidebar-inner::-webkit-scrollbar-thumb,.comment-section::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.04);border-radius:8px}
+/* ---------------------------
+   Sidebar: keep top controls
+   --------------------------- */
+/* Group header + search + quick-buttons into a sticky top block inside the scrollable .sidebar-inner */
+.sidebar-top {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 12px;                /* accounts for .sidebar-inner padding:12px so it visually sits flush */
+  z-index: 40;              /* above the scrollable list */
+  padding-bottom: 8px;
+  /* repeat the sidebar background so the sticky block doesn't show content underneath */
+  background: linear-gradient(180deg,#0f0f10,#19191a);
+}
+
+/* Small spacing normalization so items inside the sticky block don't visually jump */
+.sidebar-top .sidebar-header,
+.sidebar-top .sidebar-search,
+.sidebar-top .quick-buttons {
+  margin: 6px 0;
+}
+
+/* push the user block down to the bottom of the sidebar */
+.sidebar-user {
+  margin-top: auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* ---------------------------
+   Comment area: sticky address bar
+   --------------------------- */
+/* Preferred: put the .topbar / .address-bar inside .comment-section.
+   When inside the .comment-section (which already has overflow:auto), this will stick
+   relative to the comments container instead of the whole page. */
+.comment-topbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;                   /* stick at the very top of the comment scroll area */
+  z-index: 30;
+  background: var(--bg);    /* use same page bg so it masks content scrolling under it */
+  padding: 8px 0;
+  border-bottom: 1px solid var(--outline);
+}
+
+/* If you cannot move HTML, the fallback: make the .address-bar itself sticky
+   BUT it must be a *descendant* of the scroll container .comment-section for this to work */
+.comment-section .address-bar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  margin-bottom: 8px;
+  background: var(--bg);
+  border-radius: 12px;
+}
+
+/* ensure scroll container context is present (you already have overflow:auto on .comment-section) */
+.comment-section { position: relative; }
