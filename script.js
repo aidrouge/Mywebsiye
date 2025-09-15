@@ -141,129 +141,88 @@ function renderTopbarControls(){
 }
 
 
-  else if(activeCategory === 'authors'){
-    const authors = Object.keys(data.authors);
-    const selAuthor = makeSelect(authors, selectedAuthor || authors[0], 'topic-select');
-    selAuthor.addEventListener('change', () => {
-      selectedAuthor = selAuthor.value;
-      selectedItem = selectedAuthor;
-      selectedSeries = null;
-      selectedTitle = null;
-      renderTopbarControls();
-      updateHeaderText();
-      highlightSidebarActive();
-    });
-    topbarControls.appendChild(selAuthor);
+  else if (activeCategory === 'authors') {
+  // Author name
+  selectedAuthor = selectedAuthor || Object.keys(data.authors)[0];
+  selectedItem = selectedAuthor;
+  topicTitle.textContent = selectedAuthor;
 
-    selectedAuthor = selectedAuthor || authors[0];
-    selectedItem = selectedAuthor;
-    const titles = data.authors[selectedAuthor].titles || [];
-    if(titles.length){
-      const selTitles = makeSelect(titles, selectedTitle || null, 'topic-subselect');
-      selTitles.addEventListener('change', () => {
-        selectedTitle = selTitles.value;
-        selectedItem = selectedTitle;
-        switchCategory('titles', selectedTitle);
-      });
-      topbarControls.appendChild(selTitles);
-    }
-    const sers = data.authors[selectedAuthor].series || [];
-    if(sers.length){
-      const selSeries = makeSelect(sers, selectedSeries || null, 'topic-subselect');
-      selSeries.addEventListener('change', () => {
-        selectedSeries = selSeries.value;
-        selectedItem = selectedSeries;
-        switchCategory('series', selectedSeries);
-      });
-      topbarControls.appendChild(selSeries);
-    }
-    updateHeaderText();
+  // Dropdown of titles by author
+  const titles = data.authors[selectedAuthor].titles || [];
+  if (titles.length) {
+    const selTitles = makeSelect(titles, selectedTitle || null, 'topic-subselect');
+    selTitles.addEventListener('change', () => {
+      selectedTitle = selTitles.value;
+      // switch to titles category if needed
+      switchCategory('titles', selectedTitle);
+    });
+    topbarControls.appendChild(selTitles);
   }
 
-  else if(activeCategory === 'series'){
-    const seriesList = Object.keys(data.series);
-    const selSeries = makeSelect(seriesList, selectedSeries || seriesList[0], 'topic-select');
+  // Dropdown of series by author
+  const sers = data.authors[selectedAuthor].series || [];
+  if (sers.length) {
+    const selSeries = makeSelect(sers, selectedSeries || null, 'topic-subselect');
     selSeries.addEventListener('change', () => {
       selectedSeries = selSeries.value;
-      selectedItem = selectedSeries;
-      selectedTitle = null;
-      renderTopbarControls();
-      updateHeaderText();
-      highlightSidebarActive();
+      switchCategory('series', selectedSeries);
     });
     topbarControls.appendChild(selSeries);
-
-    selectedSeries = selectedSeries || seriesList[0];
-    selectedItem = selectedSeries;
-
-    const titles = data.series[selectedSeries] || [];
-    if(titles.length){
-      const selTitles = makeSelect(titles, selectedTitle || null, 'topic-subselect');
-      selTitles.addEventListener('change', () => {
-        selectedTitle = selTitles.value;
-        selectedItem = selectedTitle;
-        switchCategory('titles', selectedTitle);
-      });
-      topbarControls.appendChild(selTitles);
-    }
-    updateHeaderText();
-  }
-
-  else if(activeCategory === 'titles'){
-    const titlesAll = Object.keys(data.titles);
-    const selTitle = makeSelect(titlesAll, selectedTitle || titlesAll[0], 'topic-select');
-    selTitle.addEventListener('change', () => {
-      selectedTitle = selTitle.value;
-      selectedItem = selectedTitle;
-      renderTopbarControls();
-      updateHeaderText();
-      highlightSidebarActive();
-    });
-    topbarControls.appendChild(selTitle);
-
-    selectedTitle = selectedTitle || titlesAll[0];
-    selectedItem = selectedTitle;
-
-    const info = data.titles[selectedTitle];
-    if(info && info.author){
-      const btnAuthor = document.createElement('button');
-      btnAuthor.className = 'topic-action';
-      btnAuthor.textContent = info.author;
-      btnAuthor.title = `Go to author: ${info.author}`;
-      btnAuthor.addEventListener('click', () => {
-        switchCategory('authors', info.author);
-        selectedAuthor = info.author;
-        selectedItem = info.author;
-        renderTopbarControls();
-        updateHeaderText();
-        highlightSidebarActive();
-      });
-      topbarControls.appendChild(btnAuthor);
-    }
-    if(info && info.series){
-      const btnSeries = document.createElement('button');
-      btnSeries.className = 'topic-action';
-      btnSeries.textContent = info.series;
-      btnSeries.title = `Go to series: ${info.series}`;
-      btnSeries.addEventListener('click', () => {
-        switchCategory('series', info.series);
-        selectedSeries = info.series;
-        selectedItem = info.series;
-        renderTopbarControls();
-        updateHeaderText();
-        highlightSidebarActive();
-      });
-      topbarControls.appendChild(btnSeries);
-    }
-
-    updateHeaderText();
-    renderComments(selectedTitle); // <-- show comments when viewing a title
-  }
-
-  if(!topbarControls.contains(topicTitle)){
-    topbarControls.appendChild(topicTitle);
   }
 }
+
+  else if (activeCategory === 'series') {
+  // Series name
+  selectedSeries = selectedSeries || Object.keys(data.series)[0];
+  selectedItem = selectedSeries;
+  topicTitle.textContent = selectedSeries;
+
+  // Show author of series (if you have reverse mapping)
+  // Assuming you have data.seriesAuthor[seriesName] or similar
+  const infoSeries = data.titles; 
+  // You need to get the author of this selectedSeries
+  // Suppose you have data.seriesAuthor[selectedSeries]
+  if (data.seriesAuthor && data.seriesAuthor[selectedSeries]) {
+    const spanAuthor = document.createElement('span');
+    spanAuthor.textContent = data.seriesAuthor[selectedSeries];
+    topbarControls.appendChild(spanAuthor);
+  }
+
+  // Dropdown of titles in this series
+  const titlesInSeries = data.series[selectedSeries] || [];
+  if (titlesInSeries.length) {
+    const selTitles = makeSelect(titlesInSeries, selectedTitle || null, 'topic-subselect');
+    selTitles.addEventListener('change', () => {
+      selectedTitle = selTitles.value;
+      switchCategory('titles', selectedTitle);
+    });
+    topbarControls.appendChild(selTitles);
+  }
+}
+
+else if (activeCategory === 'titles') {
+  // Title name
+  selectedTitle = selectedTitle || Object.keys(data.titles)[0];
+  selectedItem = selectedTitle;
+  topicTitle.textContent = selectedTitle;
+
+  const info = data.titles[selectedTitle] || {};
+
+  // Show author of title
+  if (info.author) {
+    const spanAuthor = document.createElement('span');
+    spanAuthor.textContent = info.author;
+    topbarControls.appendChild(spanAuthor);
+  }
+
+  // Show series of title
+  if (info.series) {
+    const spanSeries = document.createElement('span');
+    spanSeries.textContent = info.series;
+    topbarControls.appendChild(spanSeries);
+  }
+}
+
 
 // -------- Category switching --------
 function switchCategory(cat, preselect = null){
