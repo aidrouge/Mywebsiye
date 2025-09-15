@@ -27,19 +27,25 @@
 
     /* Content + comment area */
     .content{min-height:100vh;display:flex;flex-direction:column;padding:0;max-width:100%;margin:0 auto;}
-   .header-section {
-  position: fixed;        /* stick to the viewport */
+  .header-section {
+  position: fixed;      /* lock it to the viewport */
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;           /* above comments, sidebar, etc. */
+  z-index: 200;         /* higher than content */
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 10px;
-  background: var(--bg);  /* solid background so comments don’t show behind */
+  background: var(--bg);
   border-bottom: 1px solid var(--outline);
 }
+
+/* prevent content from hiding behind the fixed header */
+.comment-section {
+  padding-top: 60px;   /* adjust = header height + spacing */
+}
+
     .header-tab{font-size:14px;color:var(--muted);} .header-comment{font-size:14px;font-weight:600;} .header-bell{margin-left:auto;color:var(--muted);}
     .comment-section{padding:0 14px 20px;flex:1 1 auto;overflow:auto;}
     .comment{display:flex;gap:10px;margin-bottom:10px;padding:10px 0;}
