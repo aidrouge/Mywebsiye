@@ -375,9 +375,16 @@ Promise.all([
   data = jsonData;
   commentsData = jsonComments;
 
-  switchCategory('genres');
-  const initial = getItemsForCategory(activeCategory)[0];
-  if(initial) { selectedItem = initial; updateHeaderText(); }
+ // Start in Titles view with the first available title
+switchCategory('titles');
+const initial = getItemsForCategory('titles')[0];
+if (initial) {
+  selectedTitle = initial;
+  selectedItem = initial;
+  updateHeaderText();
   renderTopbarControls();
+  renderComments(initial);
+}
+
 })
 .catch(err => console.error('Failed to load JSON:', err));
