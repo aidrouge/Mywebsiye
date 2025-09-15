@@ -1,0 +1,72 @@
+{
+"genres": ["Fiction", "Non-Fiction", "Mystery", "Sci-Fi", "Romance", "Thriller", "Fantasy"],
+"authors": {
+"J.K. Rowling": {
+"titles": ["Harry Potter and the Sorcerer's Stone", "Harry Potter and the Chamber of Secrets", "Harry Potter and the Prisoner of Azkaban"],
+"series": ["Harry Potter"]
+},
+"George R.R. Martin": {
+"titles": ["A Game of Thrones", "A Clash of Kings"],
+"series": ["A Song of Ice and Fire"]
+},
+"Jane Austen": {
+"titles": ["Pride and Prejudice"],
+"series": []
+},
+"Isaac Asimov": {
+"titles": ["Foundation"],
+"series": ["Foundation"]
+},
+"Agatha Christie": {
+"titles": ["The Murder of Roger Ackroyd"],
+"series": []
+}
+},
+"series": {
+"Harry Potter": ["Harry Potter and the Sorcerer's Stone", "Harry Potter and the Chamber of Secrets", "Harry Potter and the Prisoner of Azkaban"],
+"A Song of Ice and Fire": ["A Game of Thrones", "A Clash of Kings"],
+"Foundation": ["Foundation"]
+},
+"titles": {
+"Harry Potter and the Sorcerer's Stone": {
+"author": "J.K. Rowling",
+"series": "Harry Potter"
+},
+"Harry Potter and the Chamber of Secrets": {
+"author": "J.K. Rowling",
+"series": "Harry Potter"
+},
+"Harry Potter and the Prisoner of Azkaban": {
+"author": "J.K. Rowling",
+"series": "Harry Potter"
+},
+"A Game of Thrones": {
+"author": "George R.R. Martin",
+"series": "A Song of Ice and Fire"
+},
+"A Clash of Kings": {
+"author": "George R.R. Martin",
+"series": "A Song of Ice and Fire"
+},
+"Pride and Prejudice": {
+"author": "Jane Austen",
+"series": null
+},
+"Foundation": {
+"author": "Isaac Asimov",
+"series": "Foundation"
+},
+"The Murder of Roger Ackroyd": {
+"author": "Agatha Christie",
+"series": null
+},
+"To Kill a Mockingbird": {
+"author": "Harper Lee",
+"series": null
+},
+"1984": {
+"author": "George Orwell",
+"series": null
+}
+}
+}
