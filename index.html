@@ -9,19 +9,22 @@
 <body>
   <aside id="sidebar" class="sidebar" aria-hidden="true">
     <div class="sidebar-inner">
-      <div class="sidebar-header">
-        <button id="sidebarClose" class="icon-btn" aria-label="Close sidebar">✕</button>
-        <h3>Menu</h3>
-      </div>
+      <div class="sidebar-top">
+  <div class="sidebar-header">
+    <button id="sidebarClose" class="icon-btn" aria-label="Close sidebar">✕</button>
+    <h3>Menu</h3>
+  </div>
 
-      <div class="sidebar-search"><input type="text" placeholder="Search..." aria-label="Search sidebar" /></div>
+  <div class="sidebar-search"><input type="text" placeholder="Search..." aria-label="Search sidebar" /></div>
 
-      <div class="quick-buttons" role="tablist" aria-label="Categories">
-        <button class="active" data-category="genres" role="tab" aria-selected="true">Genres</button>
-        <button data-category="authors" role="tab">Authors</button>
-        <button data-category="series" role="tab">Series</button>
-        <button data-category="titles" role="tab">Titles</button>
-      </div>
+  <div class="quick-buttons" role="tablist" aria-label="Categories">
+    <button class="active" data-category="genres" role="tab" aria-selected="true">Genres</button>
+    <button data-category="authors" role="tab">Authors</button>
+    <button data-category="series" role="tab">Series</button>
+    <button data-category="titles" role="tab">Titles</button>
+  </div>
+</div>
+
 
       <nav class="sidebar-list" id="sidebarList" aria-label="Sidebar list">
         <!-- topics (flat) injected here -->
