@@ -118,17 +118,28 @@ body{
   background:var(--bg);
 }
 .comment-topbar .address-bar {
-  display:flex;align-items:center;gap:8px;
+  display:flex;
+  align-items:center;
+  gap:8px;
   background:var(--glass);
   padding:8px 12px;
   border-radius:20px;
   border:1px solid var(--outline);
   margin:8px 10px;
   max-width:calc(100% - 20px);
-  overflow:hidden;
+
+  /* ✅ enable horizontal scroll here */
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
   white-space:nowrap;
-  text-overflow:ellipsis;
 }
+
+/* ✅ hide scrollbar for clean look */
+.comment-topbar .address-bar::-webkit-scrollbar { display:none; }
+.comment-topbar .address-bar { scrollbar-width:none; -ms-overflow-style:none; }
+.comment-topbar .address-bar > * { flex:0 0 auto; margin-right:8px; }
+
 
 .header-tab{font-size:14px;color:var(--muted);} 
 .header-comment{font-size:14px;font-weight:600;} 
